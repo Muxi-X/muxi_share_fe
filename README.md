@@ -1,3 +1,3 @@
-## muxi_share_fe
+## my-project
 
 > A vue project.
