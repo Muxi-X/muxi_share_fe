@@ -8,6 +8,11 @@
         <a href="http://muxistudio.com/">
       @Muxi-Studio
     </a>
+    <ol>
+    <li v-for="todo in todos">
+      {{ todo.text }}
+    </li>
+  </ol>
     </div>
 </template>
 <script>
@@ -15,7 +20,12 @@ export default {
     name: 'app',
     data() {
         return {
-            message: 'Hello Ninja!'
+            message: 'Hello Ninja!',
+            todos: [
+      { text: '学习 JavaScript' },
+      { text: '学习 Vue' },
+      { text: '整个项目' }
+    ]
         }
     }
 }
