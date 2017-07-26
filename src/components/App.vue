@@ -1,34 +1,64 @@
 <template>
     <div id="app" :class="$style.app">
-        <h2> {{ message }} </h2>
-        <img src="../assets/muxi_logo.png" alt="muxi_logo">
-        <a href="https://github.com/Muxi-Studio/ninja">
-      github
-    </a>
-        <a href="http://muxistudio.com/">
-      @Muxi-Studio
-    </a>
-    <ol>
-    <li v-for="todo in todos">
-      {{ todo.text }}
-    </li>
-  </ol>
+        <h1>Todo List</h1>
+
+        <input class="$style.input" type="text" v-model="inputVaule" v-on:keyup.enter="add"/>
+        <button v-on:click="add" class="$style.button">add your plan</button>
+        <ol >
+          <li v-for="todo in todos" >
+          <div class="$style.liDiv">
+            <input type="checkbox" v-model="todo.completed">
+            <label v-bind:class="{complete:todo.completed}"> {{ todo.text }} </label>
+            <button v-on:click="remove" class="$style.button"> x </button>
+          </div>
+          </li>
+        </ol>
+
+
     </div>
 </template>
+
+
 <script>
+/*var app = new Vue({
+  el: '#app',
+  data: {
+    todos:[
+      {text:'1', completed:true},
+      {text:'2', completed:false}
+    ],
+    inputVaule:''
+
+    },
+  methods:{
+    add: function(){
+      this.todos.push({text: this.inputVaule});
+      this.inputVaule='';
+    },
+    removeTodo: function(){
+      this.todos.splice(this.todos.indexOf(todo), 1)
+    }
+  }
+}
+)
+*/
+
 export default {
     name: 'app',
-    data() {
-        return {
-            message: 'Hello Ninja!',
-            todos: [
-      { text: '学习 JavaScript' },
-      { text: '学习 Vue' },
-      { text: '整个项目' }
-    ]
+    data: {
+      todos:[{text:'1'}], [{text:'2'}]
+      inputVaule:""
+    },
+    methods: {
+      add :function(){
+        this.todos.push({text: this.inputVaule);
+        this.inputVaule="";
+      }
+    }
         }
     }
 }
+
 </script>
 <style lang="scss" module>
 .app {
