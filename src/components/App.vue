@@ -8,7 +8,7 @@
           <div class="$style.liDiv">
             <input type="checkbox" v-model="todo.completed">
             <label v-bind:class="{complete:todo.completed}"> {{ todo.text }} </label>
-            <button v-on:click="remove" class="$style.button"> x </button>
+            <button v-on:click="removeTodo" class="$style.button"> x </button>
           </div>
           </li>
         </ol>
@@ -21,24 +21,25 @@
 export default {
     name: 'app',
 
-    data: {
-      todos:[
-        {text:'1', completed:true},
-        {text:'2', completed:false}
-      ],
-      inputVaule:""
-    },
+    data() {
+      return{
+        todos:[
+          {text: '1', completed: true},
+          {text: '2', completed: false}
+        ],
+        inputVaule: ""
+
+    }},
 
     methods: {
-      add :function(){
-        this.todos.push({text: this.inputVaule});
-        this.inputVaule="";
+      add: function(){
+        this.todos.push({text:this.inputVaule});
+        this.inputVaule = '';
       },
       removeTodo: function(todo){
         this.todos.splice(this.todos.indexOf(todo), 1)
       }
     }
-}
 
 
 </script>
