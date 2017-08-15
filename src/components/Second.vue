@@ -16,7 +16,7 @@ export default {
         return {
             message: 'Second!'
         }
-    }
+  },
 }
 </script>
 <style lang="scss" module>
