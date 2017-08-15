@@ -13,7 +13,7 @@ function resolve(dir) {
 
 module.exports = {
         entry: {
-            index: './src/main.js',
+            index: './src/index.js',
             second: './src/second.js'
         },
         output: {
