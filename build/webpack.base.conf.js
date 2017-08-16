@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 var webpack = require('webpack')
 
+
 process.noDeprecation = true
 
 function resolve(dir) {
@@ -32,7 +33,13 @@ module.exports = {
                     test: /\.js$/,
                     loader: 'babel-loader',
                     include: [resolve('src')]
-                }, {
+                },{
+                    test: /\.css$/,
+                    loaders: 'style-loader!css-loader'
+                },{
+                    test: /\.scss$/,
+                    loaders: ["style-loader", "css-loader", "sass-loader"]
+                },{
                     test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                     loader: 'url-loader',
                     options: {
@@ -49,10 +56,10 @@ module.exports = {
                 // any required modules inside node_modules are extracted to vendor
                 return (
                     module.resource &&
-                    /\.js$/.test(module.resource) &&
+                    /\.js|\.css$/.test(module.resource) &&
                     module.resource.indexOf(
                         path.join(__dirname, '../node_modules')
-                    ) === 0
+                    ) >= 0
                 )
             }
         }),
