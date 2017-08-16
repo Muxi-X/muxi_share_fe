@@ -33,7 +33,41 @@
       <div :class="$style.background">
       </div>
     </div>
+    <md-button class="md-fab md-fab-bottom-right">
+      <md-icon>add</md-icon>
+    </md-button>
 
+      <md-tabs md-centered class="md-warn">
+
+        <md-tab md-label="NEW" md-icon="ondemand_video">
+
+        </md-tab>
+        <md-tab md-label="HOT" md-icon="ondemand_video">
+
+        </md-tab>
+        <md-tab md-label="MINE" md-icon="ondemand_video">
+
+        </md-tab>
+        <md-tab md-label="FRONTEND" md-icon="ondemand_video">
+
+        </md-tab>
+
+        <md-tab md-label="BACKEND" md-icon="music_note">
+
+        </md-tab>
+
+        <md-tab md-label="ANDROID" md-icon="books">
+
+        </md-tab>
+
+        <md-tab md-label="DESIGN" md-icon="photo">
+
+        </md-tab>
+        <md-tab md-label="PRODUCT" md-icon="photo">
+
+        </md-tab>
+
+      </md-tabs>
 
 
   </div>
@@ -60,7 +94,7 @@ export default {
 <style lang="scss" module>
 .parallax{
   width: auto;
-  height: 300px;
+  height: 270px;
 }
 .background{
   height: 100%;
