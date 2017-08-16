@@ -6,8 +6,8 @@
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">木犀分享</h2>
-      <a href="/"><md-button class="md-raised md-warn">首页</md-button></a>
-      <a href="http://auth.muxixyz.com/logout/"><md-button class="md-raised md-warn">登出</md-button></a>
+      <md-button href="/" class="md-raised md-warn">首页</md-button>
+      <md-button href="http://auth.muxixyz.com/logout/" class="md-raised md-warn">登出</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-medium">
@@ -15,11 +15,28 @@
           <h2 class="md-title">MUXI SHARE</h2>
         </div>
       </md-toolbar>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi cupiditate esse necessitatibus beatae nobis, deserunt ut est fugit, tempora deleniti, eligendi commodi doloribus. Nemo, assumenda possimus, impedit inventore perferendis iusto!</p>
+      <md-list>
+        <md-button href="/">
+          <md-list-item>
+            <md-icon class="md-accent">home</md-icon> <span>home</span>
+          </md-list-item>
+        </md-button>
+        <md-divider class="md-inset"></md-divider>
+        <md-button href="http://auth.muxixyz.com/logout/">
+          <md-list-item>
+            <md-icon class="md-accent">send</md-icon> <span>sign out</span>
+          </md-list-item>
+        </md-button>
+      </md-list>
     </md-sidenav>
+    <div :class="$style.parallax">
+      <div :class="$style.background">
+      </div>
+    </div>
+
+
+
   </div>
-
-
 </template>
 
 
@@ -41,5 +58,17 @@ export default {
 </script>
 
 <style lang="scss" module>
-
+.parallax{
+  width: auto;
+  height: 300px;
+}
+.background{
+  height: 100%;
+  width: 100%;
+  background-image: url("../assets/header_img.jpg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>

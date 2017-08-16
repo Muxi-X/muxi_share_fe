@@ -1,5 +1,5 @@
 <template>
-    <div id="app"  :class="$style.app">
+    <div>
         <h2> {{ message }} </h2>
         <a href="https://github.com/Muxi-Studio/ninja">
       github
@@ -11,7 +11,6 @@
 </template>
 <script>
 export default {
-    name: 'app',
     data() {
         return {
             message: 'Second!'

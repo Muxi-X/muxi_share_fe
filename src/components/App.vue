@@ -1,5 +1,5 @@
 <template>
-  <div id="app" >
+  <div>
     <he :class="$style.header"></he>
   </div>
 </template>
