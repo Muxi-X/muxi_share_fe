@@ -7,9 +7,21 @@ import App from './components/App'
 Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
-  primary: 'indigo',
-  accent: 'deep-orange',
-  warn: 'red',
+  primary: {
+		color: 'indigo',
+	  hue: 700,
+	  textcolor: 'red'
+	},
+  accent: {
+		color: 'blue',
+	  hue: 600,
+	  textcolor: 'red'
+	},
+  warn: {
+		color: 'indigo',
+	  hue: 500,
+	  textcolor: 'red'
+	},
   background: 'white'
 })
 
