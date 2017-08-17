@@ -8,17 +8,16 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
   primary: {
-		color: 'indigo',
-	  hue: 700
+		color: 'blue',
+	  hue: 900
 	},
   accent: {
-		color: 'blue',
-	  hue: 'A200'
+		color: 'light-blue',
+	  hue: 200
 	},
   warn: {
-		color: 'indigo',
-	  hue: 500,
-		text: 'white'
+		color: 'blue',
+	  hue: 800,
 	},
   background: 'white'
 })

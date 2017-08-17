@@ -30,27 +30,31 @@
     </md-sidenav>
     <div :class="$style.parallax">
       <div :class="$style.background">
+        <a href="./send">
+          <div :class="$style.button_container">
+            <md-button class="md-fab md-fab-bottom-right">
+              <md-icon>add</md-icon>
+            </md-button>
+          </div>
+        </a>
       </div>
     </div>
-    <md-button class="md-fab md-fab-bottom-right">
-      <md-icon>add</md-icon>
-    </md-button>
-      <md-tabs md-centered class="md-warn">
-        <div v-on:click="toMain"><md-tab md-label="NEW" md-icon="fiber_new">dfdfg</md-tab></div>
-        <md-tab md-label="HOT" md-icon="whatshot">dafgdfg</md-tab>
-        <md-tab md-label="MINE" md-icon="assignment_ind"></md-tab>
-        <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
-        <md-tab md-label="BACKEND" md-icon="build"></md-tab>
-        <md-tab md-label="ANDROID" md-icon="android"></md-tab>
-        <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
-        <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
-      </md-tabs>
+    <md-tabs md-centered class="md-warn" @change="change">
+      <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
+      <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
+      <md-tab md-label="MINE" md-icon="assignment_ind"></md-tab>
+      <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
+      <md-tab md-label="BACKEND" md-icon="build"></md-tab>
+      <md-tab md-label="ANDROID" md-icon="android"></md-tab>
+      <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
+      <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
+    </md-tabs>
   </div>
 </template>
 
 
-
 <script>
+const route = ["/","HOT","MINE","FRONTEND","BACKEND","ANDROID","DESIGN","PRODUCT"]
 export default {
   methods: {
     toggleLeftSidenav() {
@@ -62,12 +66,13 @@ export default {
     close(ref) {
       console.log('Closed: ' + ref);
     },
-    toMain() {
-      window.location = "/"
+    change(e){
+      window.location.href= `/${route[e]}`
     }
   }
 }
 </script>
+
 
 <style lang="scss" module>
 .parallax{
@@ -82,5 +87,12 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.button_container{
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  top: 334px;
+  right: 140px;
 }
 </style>
