@@ -6,6 +6,6 @@ import 'vue-material/dist/vue-material.css'
 Vue.use(VueMaterial)
 
 new Vue({
-	el: '#app',
+	el: '#second',
 	render: h => h(Second)
 })

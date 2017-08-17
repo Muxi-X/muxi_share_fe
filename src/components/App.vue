@@ -2,6 +2,7 @@
   <div>
     <he :class="$style.header"></he>
     <list></list>
+    <foot></foot>
   </div>
 </template>
 
@@ -9,24 +10,18 @@
 <script>
 import header from './header.vue'
 import list from './list.vue'
+import footer from './footer.vue'
 
 export default {
     components: {
       "he": header,
-      "list": list
+      "list": list,
+      "foot": footer,
     }
 }
 </script>
 
 
 <style lang="scss" module>
-.app {
-    margin: 0;
-}
-.foo {
-    margin-top: 180px;
-}
-.header{
-  height: 50px;
-}
+
 </style>
