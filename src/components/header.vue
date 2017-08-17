@@ -1,5 +1,4 @@
 <template>
-
   <div class="phone-viewport">
     <md-toolbar>
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
@@ -36,40 +35,16 @@
     <md-button class="md-fab md-fab-bottom-right">
       <md-icon>add</md-icon>
     </md-button>
-
       <md-tabs md-centered class="md-warn">
-
-        <md-tab md-label="NEW" md-icon="ondemand_video">
-
-        </md-tab>
-        <md-tab md-label="HOT" md-icon="ondemand_video">
-
-        </md-tab>
-        <md-tab md-label="MINE" md-icon="ondemand_video">
-
-        </md-tab>
-        <md-tab md-label="FRONTEND" md-icon="ondemand_video">
-
-        </md-tab>
-
-        <md-tab md-label="BACKEND" md-icon="music_note">
-
-        </md-tab>
-
-        <md-tab md-label="ANDROID" md-icon="books">
-
-        </md-tab>
-
-        <md-tab md-label="DESIGN" md-icon="photo">
-
-        </md-tab>
-        <md-tab md-label="PRODUCT" md-icon="photo">
-
-        </md-tab>
-
+        <div v-on:click="toMain"><md-tab md-label="NEW" md-icon="fiber_new">dfdfg</md-tab></div>
+        <md-tab md-label="HOT" md-icon="whatshot">dafgdfg</md-tab>
+        <md-tab md-label="MINE" md-icon="assignment_ind"></md-tab>
+        <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
+        <md-tab md-label="BACKEND" md-icon="build"></md-tab>
+        <md-tab md-label="ANDROID" md-icon="android"></md-tab>
+        <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
+        <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
       </md-tabs>
-
-
   </div>
 </template>
 
@@ -86,9 +61,12 @@ export default {
     },
     close(ref) {
       console.log('Closed: ' + ref);
+    },
+    toMain() {
+      window.location = "/"
     }
   }
-};
+}
 </script>
 
 <style lang="scss" module>
