@@ -1,16 +1,19 @@
 <template>
   <div>
     <he :class="$style.header"></he>
+    <list></list>
   </div>
 </template>
 
 
 <script>
 import header from './header.vue'
+import list from './list.vue'
 
 export default {
     components: {
-      "he": header
+      "he": header,
+      "list": list
     }
 }
 </script>

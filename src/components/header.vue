@@ -5,8 +5,8 @@
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">木犀分享</h2>
-      <md-button href="/" class="md-raised md-warn">首页</md-button>
-      <md-button href="http://auth.muxixyz.com/logout/" class="md-raised md-warn">登出</md-button>
+      <md-button href="/" class="md-accent">首页</md-button>
+      <md-button href="http://auth.muxixyz.com/logout/" class="md-accent">登出</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-medium">
