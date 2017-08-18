@@ -12,12 +12,12 @@ Vue.material.registerTheme('default', {
 	  hue: 900
 	},
   accent: {
-		color: 'cyan',
-	  hue: 'A100'
+		color: 'pink',
+	  hue: 500
 	},
   warn: {
 		color: 'blue',
-	  hue: 600
+	  hue: 500
 	},
   background: 'white'
 })
