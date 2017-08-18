@@ -11,11 +11,84 @@
 			"endpoint": "/second",
 			"template": "second",
 			"async": false
+		},
+		{
+			"name": "get_share",
+			"endpoint": "/get/",
+			"async": true
 		}
 	],
 	"data":{
-		"index":{
-			"title": "Hello Ninja!"
-		}
+		"get_share":{
+			"share" :
+	 [
+		 {
+     "share" : "share内容预览",
+     "title" : "08.18前端早读",
+     "username" : "xuyajing",
+     "id" : 1,
+     "date" : "9.30",
+     "comment" : "哈哈哈",
+     "avatar":"http://vuematerial.io/assets/vue-material-example.png",
+     "read_num" : 3,
+     "user_id" : 2,
+		 "tag" : "FRONTEND",
+		 "comment_num" : 5
+     },{
+	   "share" : "share我是预览哈哈哈",
+	   "title" : "title818后端早读",
+	   "username" : "蕾蕾",
+	   "id" : 5,
+	   "date" : "8.30",
+	   "comment" : "我是后端评论jjj",
+	   "avatar" :   "https://avatars2.githubusercontent.com/u/17528665?v=3&s=460",
+	   "read_num" : 8,
+	   "user_id" : 3,
+		 "tag" : "BACKEND",
+		 "comment_num" : 2
+	 },
+	 {
+	 "share" : "share内容预览",
+	 "title" : "08.18前端早读",
+	 "username" : "xuyajing",
+	 "id" : 1,
+	 "date" : "9.30",
+	 "comment" : "哈哈哈",
+	 "avatar":"http://vuematerial.io/assets/vue-material-example.png",
+	 "read_num" : 3,
+	 "user_id" : 2,
+	 "tag" : "FRONTEND",
+	 "comment_num" : 5
+	 },
+	 {
+	 "share" : "share内容预览",
+	 "title" : "08.18前端早读",
+	 "username" : "xuyajing",
+	 "id" : 1,
+	 "date" : "9.30",
+	 "comment" : "哈哈哈",
+	 "avatar":"http://vuematerial.io/assets/vue-material-example.png",
+	 "read_num" : 3,
+	 "user_id" : 2,
+	 "tag" : "FRONTEND",
+	 "comment_num" : 5
+	 },
+	 {
+	 "share" : "share内容预览",
+	 "title" : "08.18前端早读",
+	 "username" : "xuyajing",
+	 "id" : 1,
+	 "date" : "9.30",
+	 "comment" : "哈哈哈",
+	 "avatar":"http://vuematerial.io/assets/vue-material-example.png",
+	 "read_num" : 3,
+	 "user_id" : 2,
+	 "tag" : "FRONTEND",
+	 "comment_num" : 5
+	 }
+		],
+  "page" : 2,
+  "pages_count" : 4
 	}
+}
 }

@@ -12,8 +12,8 @@ Vue.material.registerTheme('default', {
 	  hue: 900
 	},
   accent: {
-		color: 'light-blue',
-	  hue: 100
+		color: 'cyan',
+	  hue: 'A100'
 	},
   warn: {
 		color: 'blue',
