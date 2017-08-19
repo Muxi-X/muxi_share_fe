@@ -18,7 +18,7 @@
             </md-card-content>
           </div>
           <md-divider></md-divider>
-          <div>
+          <div :class="$style.clear_float">
             <div :class="$style.ic_container">
               <md-icon class="md-primary">comment</md-icon>
             </div>
@@ -37,8 +37,6 @@
 </template>
 
 
-
-
 <script>
 export default {
     data() {
@@ -51,16 +49,17 @@ export default {
 </script>
 
 
-
 <style lang="scss" module>
+/*不要写死 子组件撑开 */
 .list_container{
-  margin-bottom: 56px;
+  padding-bottom: 112px;
+  height: 100%;
 }
 .card_container{
   width: 840px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 28px;
+  margin-top: 56px;
   margin-bottom: 56px;
 }
 .content_container{
@@ -75,11 +74,15 @@ export default {
 }
 .ic_container{
   margin-left: 32px;
+  line-height: 52px;
 }
 .comment_container{
   margin-right: 24px;
 }
 .readmore_container{
-  margin-left: 480px;
+  float: right;
+}
+.clear_float{
+  overflow: hidden;
 }
 </style>
