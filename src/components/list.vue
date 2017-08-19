@@ -33,6 +33,18 @@
         </md-card>
       </div>
     </div>
+    <div :class="$style.fab">
+      <div :class="$style.back_container">
+        <md-button class="md-fab">
+          <md-icon>arrow_back</md-icon>
+        </md-button>
+      </div>
+      <div :class="$style.forward_container">
+        <md-button class="md-fab">
+          <md-icon>arrow_forward</md-icon>
+        </md-button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -52,7 +64,7 @@ export default {
 <style lang="scss" module>
 /*不要写死 子组件撑开 */
 .list_container{
-  padding-bottom: 112px;
+  padding-bottom: 72px;
   height: 100%;
 }
 .card_container{
@@ -69,7 +81,7 @@ export default {
   white-space: nowrap;
   margin-left: 180px;
 }
-.ic_container, .comment_container, .readmore_container{
+.ic_container, .comment_container, .readmore_container, .back_container, .forward_container{
   display: inline-block;
 }
 .ic_container{
@@ -84,5 +96,16 @@ export default {
 }
 .clear_float{
   overflow: hidden;
+}
+.fab{
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.back_container{
+  float: left;
+}
+.forward_container{
+  float: right;
 }
 </style>
