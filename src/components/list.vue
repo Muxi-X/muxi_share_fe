@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.list_container">
-    <div v-for="item in items">
+    <div v-if="pages_count" v-for="item in items">
       <div :class="$style.card_container">
         <md-card md-with-hover class="md-warn">
           <md-card-header>
@@ -34,18 +34,6 @@
       </div>
     </div>
     <!-- <div v-if="!this.page_count">nothing</div> -->
-    <div :class="$style.fab">
-      <div :class="$style.back_container" v-on:click="pageDown">
-        <md-button class="md-fab">
-          <md-icon>arrow_back</md-icon>
-        </md-button>
-      </div>
-      <div :class="$style.forward_container" v-on:click="pageUp">
-        <md-button class="md-fab">
-          <md-icon>arrow_forward</md-icon>
-        </md-button>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -58,28 +46,21 @@ export default {
         page_num: 1
       }
     },
-    mounted(){
-      console.log(this.pages_count)
-    },
     methods: {
-	    // pageDown() {
-	    //   this.$emit('pageDown')
-		  // },
-		  // pageUp() {
-			//   this.$emit('pageUp')
-		  // }
+	    pageDown() {
+	      this.$emit('pageDown')
+		  },
+		  pageUp() {
+			  this.$emit('pageUp')
+		  }
     }
 }
-
-
-
 </script>
 
 
 <style lang="scss" module>
 /*不要写死 子组件撑开 */
 .list_container{
-  padding-bottom: 72px;
   height: 100%;
 }
 .card_container{
@@ -111,16 +92,5 @@ export default {
 }
 .clear_float{
   overflow: hidden;
-}
-.fab{
-  width: 80%;
-  margin: 0 auto;
-  overflow: hidden;
-}
-.back_container{
-  float: left;
-}
-.forward_container{
-  float: right;
 }
 </style>
