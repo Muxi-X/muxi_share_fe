@@ -33,13 +33,14 @@
         </md-card>
       </div>
     </div>
+    <!-- <div v-if="!this.page_count">nothing</div> -->
     <div :class="$style.fab">
-      <div :class="$style.back_container">
+      <div :class="$style.back_container" v-on:click="pageDown">
         <md-button class="md-fab">
           <md-icon>arrow_back</md-icon>
         </md-button>
       </div>
-      <div :class="$style.forward_container">
+      <div :class="$style.forward_container" v-on:click="pageUp">
         <md-button class="md-fab">
           <md-icon>arrow_forward</md-icon>
         </md-button>
@@ -51,13 +52,27 @@
 
 <script>
 export default {
+    props:["items","pages_count"],
     data() {
       return {
-
+        page_num: 1
       }
     },
-    props:['items']
-  }
+    mounted(){
+      console.log(this.pages_count)
+    },
+    methods: {
+	    // pageDown() {
+	    //   this.$emit('pageDown')
+		  // },
+		  // pageUp() {
+			//   this.$emit('pageUp')
+		  // }
+    }
+}
+
+
+
 </script>
 
 

@@ -1,7 +1,9 @@
 <template>
   <div>
-    <he :class="$style.header"></he>
-    <list :items="this.items"></list>
+    <he></he>
+    <list :items="this.items"
+          :pages_count="this.pages_count">
+    </list>
     <foot></foot>
   </div>
 </template>
@@ -15,7 +17,9 @@ import footer from './footer.vue'
 export default {
   data(){
     return {
-      items: []
+      items: [],
+      pages_count: "",
+      page_num:0
     }
   },
     components: {
@@ -23,14 +27,44 @@ export default {
       "list": list,
       "foot": footer
     },
-    mounted() {
-      fetch('/get/').then(res => {
+    created() {
+      fetch('/api/v2.0/?page=1').then(res => {
         return res.json()
       })
-      .then(res => {
-        this.items = res.share
+      .then(value => {
+        // console.log(value)
+        this.items = value.share
+        this.pages_count = value.pages_count //总页数数
+        this.page_num = value.page //当前页数
+        // console.log(this.pages_count)
       })
-    }
+    },
+    methods: {
+      // PageUp() {
+      //   if (this.page_num != this.pages_count) {
+      //     this.page_num += 1;
+      //     fetch('/api/v2.0/?page=' + this.page_num).then(res => {
+      //       return res.json();
+      //     })
+      //     .then(res => {
+      //       this.items = res.share
+      //       // this.page_count = res.pages_count
+      //     })
+      //   }
+      // },
+    //   PageDown() {
+    //     if (this.page_num != 1) {
+    //       this.page_num -= 1;
+    //       fetch('/api/v2.0/?page=' + this.page_num).then(res => {
+    //         return res.json();
+    //       })
+    //       .then(res => {
+    //         this.items = res.share
+    //         // this.page_count = res.pages_count
+    //   })
+    //   }
+    // }
+  }
 }
 </script>
 
