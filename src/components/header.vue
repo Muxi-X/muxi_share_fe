@@ -30,7 +30,7 @@
     </md-sidenav>
     <div :class="$style.parallax">
       <div :class="$style.background">
-        <a href="./send">
+        <a href="/send">
           <div :class="$style.button_container">
             <md-button class="md-fab md-fab-bottom-right">
               <md-icon>add</md-icon>
@@ -54,7 +54,7 @@
 
 
 <script>
-const route = ["/","HOT","MINE","FRONTEND","BACKEND","ANDROID","DESIGN","PRODUCT"]
+const route = ["/","hot","mine","frontend","backend","android","design","product"]
 export default {
   methods: {
     toggleLeftSidenav() {

@@ -69,7 +69,7 @@ export default {
         if (this.page_num != 1) {
           this.page_num -= 1;
           this.pagechange();
-      }
+        }
       }
     }
   }
