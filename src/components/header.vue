@@ -54,7 +54,7 @@
 
 
 <script>
-const route = ["/","hot","mine","frontend","backend","android","design","product"]
+const route = ["/","hot","mine","frontend","backend","android","design","product"] //bug:route "/" cannot fetch “home”
 export default {
   methods: {
     toggleLeftSidenav() {
