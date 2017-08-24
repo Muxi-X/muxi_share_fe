@@ -21,6 +21,7 @@
     </div>
     <div :class="$style.card_container">
       <md-card>
+        <div :class="$style.comment_title">Comments</div>
         <div v-for="item in items">
           <md-card-header>
             <md-avatar>
@@ -34,11 +35,15 @@
           <md-card-content>{{item.comment}}</md-card-content>
           <md-divider></md-divider>
         </div>
+        <div :class="$style.comment_title">Add New Comments</div>
+        <form  :class="$style.cmtextarea">
+          <md-input-container >
+            <label>Comment here</label>
+            <md-textarea></md-textarea>
+          </md-input-container>
+        </form>
       </md-card>
     </div>
-
-
-
     <foot></foot>
   </div>
 </template>
@@ -100,5 +105,12 @@ export default {
 }
 .sharetext{
   margin: 36px ;
+}
+.comment_title{
+  margin: 36px 16px;
+  font-size: 24px;
+}
+.cmtextarea{
+  margin: 16px 56px;
 }
 </style>
