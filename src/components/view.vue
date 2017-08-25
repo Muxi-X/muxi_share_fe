@@ -35,7 +35,7 @@
           <md-card-content>{{item.comment}}</md-card-content>
           <md-divider></md-divider>
         </div>
-        <show></show>
+        <show :id="this.id"></show>
       </md-card>
     </div>
     <foot></foot>
@@ -49,11 +49,11 @@ import show from './show.vue'
 export default {
     data() {
       return {
-        "id": 0,
-        "share" : {
+        id: 0,
+        share : {
           type: Object
         },
-        "items": []
+        items: []
       }
     },
     components: {
@@ -63,7 +63,7 @@ export default {
     },
     mounted() {
       var api = window.location.pathname;
-      this.id = api.split('/')[2];
+      this.id = api.split('/')[2]; //把 id props 给子组件
       fetch('/api/v2.0/' + this.id + '/views/').then(res => {
         return res.json()
       })
@@ -74,22 +74,19 @@ export default {
     },
     methods: {
       fetchComments() {
-        if (this.sendComment) {
-          fetch('/api/v2.0/' + this.id + '/views/').then(res => {
-            return res.json()
-          })
-          .then(res => {
-            this.comments = res.comments
-          })
-        }
+        console.log(this.id)
+        fetch('/api/v2.0/' + this.id + '/comments/').then(res => {
+          return res.json()
+        })
+        .then(res => {
+          this.comments = res.comments
+        })
       }
     }
-}
-
-
-
-
+  }
 </script>
+
+
 <style lang="scss" module>
 .card_container{
   width: 840px;
@@ -100,5 +97,9 @@ export default {
 }
 .sharetext{
   margin: 36px ;
+}
+.comment_title{
+  margin: 36px 16px;
+  font-size: 24px;
 }
 </style>
