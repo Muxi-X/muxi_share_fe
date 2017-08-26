@@ -35,7 +35,7 @@
           <md-card-content>{{item.comment}}</md-card-content>
           <md-divider></md-divider>
         </div>
-        <show :id="this.id"></show>
+        <show :id="this.id" v-on:newComment="fetchComments"></show>
       </md-card>
     </div>
     <foot></foot>
@@ -74,12 +74,12 @@ export default {
     },
     methods: {
       fetchComments() {
-        console.log(this.id)
-        fetch('/api/v2.0/' + this.id + '/comments/').then(res => {
+        fetch('/api/v2.0/' + this.id + '/views/').then(res => {  //api/v2.0/<int:id>/comments/ api改成/view
           return res.json()
         })
         .then(res => {
-          this.comments = res.comments
+          console.log(this.id)
+          this.items = res.comments
         })
       }
     }

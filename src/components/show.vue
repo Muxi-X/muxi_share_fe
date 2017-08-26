@@ -33,7 +33,7 @@ export default {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'token': '' //token
+            'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
           },
           body: JSON.stringify({
             comment: this.text
@@ -41,7 +41,8 @@ export default {
         })
         .then(res => {
           this.text=""
-          this.$parent.fetchComments()
+          // this.$parent.fetchComments()
+          this.$emit('newComment')
         })
       }
     }
