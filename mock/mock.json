@@ -7,6 +7,12 @@
 			"async": false
 		},
 		{
+			"name": "send",
+			"endpoint": "/send",
+			"template": "send",
+			"async": false
+		},
+		{
 			"name": "view",
 			"endpoint": "/view/:id",
 			"template": "view",

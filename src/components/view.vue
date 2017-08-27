@@ -68,7 +68,7 @@ export default {
         return res.json()
       })
       .then(value => {
-        this.share = value.share
+        this.share = value.shares
         this.items = value.comments
       })
     },

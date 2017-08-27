@@ -15,7 +15,8 @@ function resolve(dir) {
 module.exports = {
         entry: {
             index: './src/index.js',
-            view: './src/view.js'
+            view: './src/view.js',
+            send: './src/send.js'
         },
         output: {
             path: path.join(__dirname, "../"),
@@ -94,6 +95,13 @@ module.exports = {
             inject: false,
             template: path.join(__dirname, '../template/view.ejs'),
             chunks: ['view']
+        }),
+        new HtmlWebpackPlugin({
+            alwaysWriteToDisk: true,
+            filename: 'template/send.html',
+            inject: false,
+            template: path.join(__dirname, '../template/send.ejs'),
+            chunks: ['send']
         }),
         new HtmlWebpackHarddiskPlugin()
     ]

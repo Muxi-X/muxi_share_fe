@@ -44,7 +44,7 @@ export default {
         return res.json()
       })
       .then(value => {
-        this.items = value.share
+        this.items = value.shares
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
       })
@@ -55,7 +55,7 @@ export default {
           return res.json();
         })
         .then(value => {
-          this.items = value.share
+          this.items = value.shares
           this.page_num = value.page
         })
       },
