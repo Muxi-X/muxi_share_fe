@@ -15,6 +15,7 @@ function resolve(dir) {
 module.exports = {
         entry: {
             index: './src/index.js',
+            new: './src/new.js',
             view: './src/view.js',
             send: './src/send.js'
         },
@@ -88,6 +89,13 @@ module.exports = {
             inject: false,
             template: path.join(__dirname, '../template/index.ejs'),
             chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            alwaysWriteToDisk: true,
+            filename: 'template/new.html',
+            inject: false,
+            template: path.join(__dirname, '../template/new.ejs'),
+            chunks: ['new']
         }),
         new HtmlWebpackPlugin({
             alwaysWriteToDisk: true,

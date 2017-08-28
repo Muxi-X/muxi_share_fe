@@ -54,7 +54,7 @@
 
 
 <script>
-const route = ["/","hot","mine","frontend","backend","android","design","product"] //bug:route "/" cannot fetch “home”
+const route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product"] //bug:route "/" cannot fetch “home”
 export default {
   methods: {
     toggleLeftSidenav() {
@@ -66,9 +66,14 @@ export default {
     close(ref) {
       console.log('Closed: ' + ref);
     },
-    change(e){
-      window.location.href= `/${route[e]}`
+    gotohref(e){
+      console.log(e)
+      window.location.href = e
     }
+    // change(e){
+    //   console.log(e)
+    //   // window.location.href= `${route[e]}`
+    // }
   }
 }
 </script>

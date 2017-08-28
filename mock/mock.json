@@ -7,6 +7,12 @@
 			"async": false
 		},
 		{
+			"name": "index",
+			"endpoint": "/new",
+			"template": "index",
+			"async": false
+		},
+		{
 			"name": "send",
 			"endpoint": "/send",
 			"template": "send",
