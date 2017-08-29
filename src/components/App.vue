@@ -1,6 +1,7 @@
 <template>
   <div>
     <he></he>
+    <tab></tab>
     <list :items="this.items"
           :pages_count="this.pages_count">
     </list>
@@ -23,6 +24,7 @@
 
 <script>
 import header from './header.vue'
+import tab from './tab.vue'
 import list from './list.vue'
 import footer from './footer.vue'
 
@@ -36,6 +38,7 @@ export default {
   },
     components: {
       "he": header,
+      "tab": tab,
       "list": list,
       "foot": footer
     },

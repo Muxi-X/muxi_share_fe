@@ -2,24 +2,18 @@
 <div>
   <he></he>
   <md-card :class="$style.sendcard">
-    <form method="post">
+    <div method="post">
       <md-input-container md-inline :class="$style.title_con">
         <md-input :class="$style.title_font" placeholder="分享主题"></md-input>
       </md-input-container>
-    </form>
-  <div>
-    <md-radio v-model="radio1" name="my-test-group1" md-value="frontend">frontend</md-radio>
-    <md-radio v-model="radio1" name="my-test-group1" md-value="backend">backend</md-radio>
-    <md-radio v-model="radio1" name="my-test-group1" md-value="Android">Android</md-radio>
-    <md-radio v-model="radio1" name="my-test-group1" md-value="design">design</md-radio>
-    <md-radio v-model="radio1" name="my-test-group1" md-value="product">product</md-radio>
-  </div>
-
-
-
-
-
-
+    </div>
+    <div>
+      <md-radio v-model="radio1" name="my-test-group1" md-value="frontend">frontend</md-radio>
+      <md-radio v-model="radio1" name="my-test-group1" md-value="backend">backend</md-radio>
+      <md-radio v-model="radio1" name="my-test-group1" md-value="Android">Android</md-radio>
+      <md-radio v-model="radio1" name="my-test-group1" md-value="design">design</md-radio>
+      <md-radio v-model="radio1" name="my-test-group1" md-value="product">product</md-radio>
+    </div>
   </md-card>
 
   <foot></foot>

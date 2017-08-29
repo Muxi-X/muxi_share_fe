@@ -7,8 +7,50 @@
 			"async": false
 		},
 		{
-			"name": "index",
+			"name": "new",
 			"endpoint": "/new",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "hot",
+			"endpoint": "/hot",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "mine",
+			"endpoint": "/mine",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "frontend",
+			"endpoint": "/frontend",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "backend",
+			"endpoint": "/backend",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "android",
+			"endpoint": "/android",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "design",
+			"endpoint": "/design",
+			"template": "index",
+			"async": false
+		},
+		{
+			"name": "product",
+			"endpoint": "/product",
 			"template": "index",
 			"async": false
 		},

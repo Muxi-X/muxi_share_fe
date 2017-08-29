@@ -39,7 +39,7 @@
         </a>
       </div>
     </div>
-    <md-tabs md-centered class="md-warn" @change="change">
+    <!-- <md-tabs md-centered class="md-warn" @change="change">
       <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
       <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
       <md-tab md-label="MINE" md-icon="assignment_ind"></md-tab>
@@ -48,13 +48,14 @@
       <md-tab md-label="ANDROID" md-icon="android"></md-tab>
       <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
       <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
-    </md-tabs>
+    </md-tabs> -->
   </div>
 </template>
 
 
 <script>
-const route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product"] //bug:route "/" cannot fetch “home”
+
+var route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product","/"]
 export default {
   methods: {
     toggleLeftSidenav() {
@@ -65,17 +66,17 @@ export default {
     },
     close(ref) {
       console.log('Closed: ' + ref);
-    },
-    gotohref(e){
-      console.log(e)
-      window.location.href = e
-    }
-    // change(e){
-    //   console.log(e)
-    //   // window.location.href= `${route[e]}`
+    // },
+    // change(e) {
+    //   console.log(window.location.pathname)
+    //   if(route.indexOf(window.location.pathname) > -1){
+    //     window.history.pushState(null, null, route[e]);
+    //   }
     // }
+    }
   }
 }
+
 </script>
 
 
