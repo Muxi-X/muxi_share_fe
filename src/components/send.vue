@@ -48,9 +48,7 @@ export default {
 .sendcard{
   height: 700px;
   width: 840px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 56px;
+  margin: 56px auto;
 }
 .title_con{
   height: 100%;

@@ -1,5 +1,12 @@
 <template>
   <div>
+    <a href="/send">
+      <div :class="$style.button_container">
+        <md-button class="md-fab md-fab-bottom-right">
+          <md-icon>add</md-icon>
+        </md-button>
+      </div>
+    </a>
     <md-tabs md-centered class="md-warn" @change="change">
       <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
       <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
@@ -15,11 +22,6 @@
 
 
 
-
-
-
-
-
 <script>
 var route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product","/"]
 export default {
@@ -32,7 +34,13 @@ export default {
       }
     }
   }
-
 </script>
 <style lang="scss" module>
+.button_container{
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  top: 334px;
+  right: 140px;
+}
 </style>
