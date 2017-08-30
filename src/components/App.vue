@@ -2,9 +2,7 @@
   <div>
     <he></he>
     <tab></tab>
-    <list :items="this.items"
-          :pages_count="this.pages_count">
-    </list>
+    <list></list>
     <div :class="$style.fab">
       <div :class="$style.back_container" v-on:click="pageDown" v-show="this.page_num > 1">
         <md-button class="md-fab">
@@ -41,16 +39,6 @@ export default {
       "tab": tab,
       "list": list,
       "foot": footer
-    },
-    created() {
-      fetch('/api/v2.0/?page=1').then(res => {
-        return res.json()
-      })
-      .then(value => {
-        this.items = value.shares
-        this.pages_count = value.pages_count //总页数数
-        this.page_num = value.page //当前页数
-      })
     },
     methods: {
       pagechange(){

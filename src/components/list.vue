@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.list_container">
-    <div v-if="pages_count" v-for="item in items">
+    <div v-for = "item in items">
       <div :class="$style.card_container">
         <md-card md-with-hover class="md-warn">
           <md-card-header>
@@ -39,20 +39,32 @@
 
 
 <script>
+import { bus } from '../bus.js'
 export default {
-    props:["items","pages_count"],
     data() {
       return {
-        page_num: 1
+        items:[],
+        page_num: 1,
+        pages_count:true
       }
     },
+    mounted() {
+      fetch('/api/v2.0/?page=1').then(res => {
+        return res.json()
+      })
+      .then(value => {
+        this.items = value.shares
+        this.pages_count = value.pages_count //总页数数
+        this.page_num = value.page //当前页数
+      })
+    },
+    created() {
+      bus.$on('getItems',this.fetchData)
+    },
     methods: {
-	    pageDown() {
-	      this.$emit('pageDown')
-		  },
-		  pageUp() {
-			  this.$emit('pageUp')
-		  }
+	    fetchData(Items) {
+        this.items = Items
+      }
     }
 }
 </script>

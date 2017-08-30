@@ -23,13 +23,35 @@
 
 
 <script>
+import { bus } from '../bus.js'
 var route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product","/"]
 export default {
+  data() {
+    return {
+      api: "",
+      url: "",
+      Items: [],
+      page_num: 1
+    }
+  },
     methods: {
       change(e) {
-        console.log(window.location.pathname)
         if(route.indexOf(window.location.pathname) > -1){
           window.history.pushState(null, null, route[e]);
+          this.api = window.location.pathname.split('/')[1];
+          if (this.api == "new"){
+            this.url = ""
+          }
+          else {
+            this.url = "?sort=" + this.api
+          }
+          fetch('/api/v2.0/'+ this.url).then(res => {
+            return res.json();
+          })
+          .then(value => {
+            this.Items = value.shares
+          })
+          bus.$emit('getItems',this.Items)
         }
       }
     }
