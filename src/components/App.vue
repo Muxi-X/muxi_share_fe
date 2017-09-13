@@ -3,18 +3,20 @@
     <he></he>
     <tab></tab>
     <list></list>
-    <div :class="$style.fab">
+    <!-- <div :class="$style.fab">
       <div :class="$style.back_container" v-on:click="pageDown" v-show="this.page_num > 1">
         <md-button class="md-fab">
           <md-icon>arrow_back</md-icon>
         </md-button>
       </div>
-      <div :class="$style.forward_container" v-on:click="pageUp" v-show="this.page_num < this.pages_count">
+      <div :class="$style.forward_container" v-on:click="pageUp"  v-show="this.page_num < this.pages_count" >
+        
+      
         <md-button class="md-fab">
           <md-icon>arrow_forward</md-icon>
         </md-button>
       </div>
-    </div>
+    </div> -->
     <foot></foot>
   </div>
 </template>
