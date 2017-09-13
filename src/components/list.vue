@@ -13,8 +13,7 @@
             </md-card-header-text>
           </md-card-header>
           <div :class="$style.content_container">
-            <md-card-content>
-              {{item.share}}
+            <md-card-content v-html="item.share">
             </md-card-content>
           </div>
           <md-divider></md-divider>
@@ -33,27 +32,52 @@
         </md-card>
       </div>
     </div>
-    <!-- <div v-if="!this.page_count">nothing</div> -->
+     <!-- <div v-if="!this.page_count">nothing</div> -->
+      <div :class="$style.card_container">
+        <div :class="$style.page_turn">
+          <md-button class="md-raised md-primary page_turn_button" @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
+          <md-button class="md-primary page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
+          <span :class="$style.slash">/</span>
+          <md-button class="md-primary pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
+          <md-button class="md-raised md-primary page_turn_button" @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
+          <input :class="$style.topageInput" type="number" v-model="toPageText" v-show="this.page_num < this.pages_count"></input>
+          <md-button class="md-raised md-primary page_turn_button" @click="toPage" v-show="this.page_num < this.pages_count">Go!</md-button> 
+          </div>
+      </div>
   </div>
 </template>
 
 
 <script>
 import { bus } from '../bus.js'
+var marked = require('marked')
+marked.setOptions({
+	renderer: new marked.Renderer(),
+	gfm: true,
+	tables: true,
+	breaks: false,
+	pedantic: false,
+	sanitize: true,
+	smartLists: true,
+	smartypants: false
+});
+
 export default {
     data() {
       return {
+        toPageText:'',
         items:[],
         page_num: 1,
         pages_count:true
       }
     },
     mounted() {
-      fetch('/api/v2.0/?page=1').then(res => {
+      fetch(`/api/v2.0/?page=${this.page_num}`).then(res => {
         return res.json()
       })
       .then(value => {
         this.items = value.shares
+        this.compiledMarkdown()
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
       })
@@ -64,6 +88,45 @@ export default {
     methods: {
 	    fetchData(Items) {
         this.items = Items
+      },
+      pageChange(){
+        fetch(`/api/v2.0/?page=${this.page_num}`).then(res => {
+        return res.json()
+        })
+      .then(value => {
+        this.items = value.shares
+        this.compiledMarkdown()
+        this.pages_count = value.pages_count //总页数数
+        this.page_num = value.page //当前页数
+      })
+      },
+      lastPage(){
+        if(this.page_num!==1){
+          this.page_num--
+          this.pageChange()
+        }    
+      },
+      nextPage(){
+        if(this.page_num!==this.pages_count){
+             this.page_num++
+             this.pageChange()
+        }
+      },
+      finalPage(){
+        this.page_num=this.pages_count
+        this.pageChange()
+      },
+      toPage(){
+        if(this.toPageText!==''){
+          // console.log(this.toPageText)
+          this.page_num=this.toPageText
+          this.pageChange()
+        }
+      },
+      compiledMarkdown() {
+       this.items.forEach(function(value){
+       value.share = marked(value.share, {sanitize: true })
+       })
       }
     }
 }
@@ -104,5 +167,14 @@ export default {
 }
 .clear_float{
   overflow: hidden;
+}
+.page_turn{
+  margin-left:20%;
+}
+.slash{
+  line-height: 3;
+}
+.topageInput{
+  width: 50px;
 }
 </style>

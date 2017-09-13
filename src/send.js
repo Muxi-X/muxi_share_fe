@@ -6,6 +6,7 @@ import send from './components/send'
 
 Vue.use(VueMaterial)
 
+
 Vue.material.registerTheme('default', {
   primary: {
 		color: 'blue',
@@ -25,4 +26,5 @@ Vue.material.registerTheme('default', {
 new Vue({
 	el: '#send',
 	render: h => h(send)
+
 })
