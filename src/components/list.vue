@@ -37,11 +37,9 @@
         <div :class="$style.page_turn">
           <md-button class="md-raised md-primary page_turn_button" @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
           <md-button class="md-primary page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
-          <span :class="$style.slash">/</span>
+          <span :class="$style.slash" v-show="this.page_num < this.pages_count">/</span>
           <md-button class="md-primary pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
           <md-button class="md-raised md-primary page_turn_button" @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
-          <input :class="$style.topageInput" type="number" v-model="toPageText" v-show="this.page_num < this.pages_count"></input>
-          <md-button class="md-raised md-primary page_turn_button" @click="toPage" v-show="this.page_num < this.pages_count">Go!</md-button> 
           </div>
       </div>
   </div>
@@ -65,7 +63,6 @@ marked.setOptions({
 export default {
     data() {
       return {
-        toPageText:'',
         items:[],
         page_num: 1,
         pages_count:true
@@ -115,13 +112,6 @@ export default {
       finalPage(){
         this.page_num=this.pages_count
         this.pageChange()
-      },
-      toPage(){
-        if(this.toPageText!==''){
-          // console.log(this.toPageText)
-          this.page_num=this.toPageText
-          this.pageChange()
-        }
       },
       compiledMarkdown() {
        this.items.forEach(function(value){
@@ -174,7 +164,5 @@ export default {
 .slash{
   line-height: 3;
 }
-.topageInput{
-  width: 50px;
-}
+
 </style>

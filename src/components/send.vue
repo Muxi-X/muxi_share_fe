@@ -86,8 +86,7 @@ export default {
          fetch(`/api/v2.0/send/`,myInit)
          .then(res=>{
           if(res.ok){
-             alert('提交成功')
-             this.changeWeb(res.status);
+             this.changeWeb();
           }else if(res.status===401){
             alert('你还未登录')
           }else{
@@ -102,10 +101,8 @@ export default {
          })
       }      
     },
-    changeWeb:function(status){
-      if(status===200){
+    changeWeb:function(){
         window.location.href=this.radio1
-      }
     }
   }
 }
