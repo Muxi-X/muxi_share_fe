@@ -103,6 +103,5 @@ module.exports = {
             template: path.join(__dirname, '../template/send.ejs'),
             chunks: ['send']
         }),
-        new HtmlWebpackHarddiskPlugin()
     ]
 }
