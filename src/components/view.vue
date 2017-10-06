@@ -17,6 +17,11 @@
         <div :class="$style.sharetext">
           <md-card-content>{{share.share}}</md-card-content>
         </div>
+       
+        <div>
+          <md-button class="md-raised md-primary " @click="delComment"  :class="$style.btn">DELETE</md-button>
+          <md-button class="md-raised md-primary " :href="'/send/'+id "  :class="$style.btn">CHANGE</md-button>
+        </div>
       </md-card>
     </div>
     <div :class="$style.card_container">
@@ -81,6 +86,22 @@ export default {
           console.log(this.id)
           this.items = res.comments
         })
+      },
+      delComment(){
+         let myInit = { method: 'DELETE', 
+                       headers: {
+                             'Accept': 'application/json',
+                             'Content-Type': 'application/json',
+                             'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
+                              },
+                      };
+        fetch('/api/v2.0/'+this.id+'/delete/',myInit).then(res=>{
+          if(res.ok){
+            window.location.href=this.share.tag;
+          }else{
+            alert('你不是作者无法删除评论');
+          }
+        })
       }
     }
   }
@@ -88,6 +109,9 @@ export default {
 
 
 <style lang="scss" module>
+.btn{
+  float: right;
+}
 .card_container{
   width: 840px;
   margin-left: auto;

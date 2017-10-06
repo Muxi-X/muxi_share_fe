@@ -67,6 +67,12 @@
 			"async": false
 		},
 		{
+			"name": "send",
+			"endpoint": "/send/:id",
+			"template": "send",
+			"async": false
+		},
+		{
 			"name": "get_share",
 			"endpoint": "/get/1/",
 			"async": true

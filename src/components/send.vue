@@ -30,7 +30,7 @@ import header from './header.vue'
 import footer from './footer.vue'
 
 var _ = require('lodash');
-var marked = require('marked')
+var marked = require('marked');
 marked.setOptions({
 	renderer: new marked.Renderer(),
 	gfm: true,
@@ -45,9 +45,13 @@ marked.setOptions({
 export default {
   data() {
     return {
+      id:0,
       title:'',
       radio1: "",
-      input:'# hello'
+      input:'# hello',
+      share : {
+          type: Object
+        }
     }
   },
   components: {
@@ -56,7 +60,7 @@ export default {
   },
   computed: {
     compiledMarkdown: function() {
-      return marked(this.input, { sanitize: true })
+      return marked(this.input, { sanitize: false })
     }
   },
   methods: {
@@ -104,7 +108,32 @@ export default {
     changeWeb:function(){
         window.location.href=this.radio1
     }
-  }
+  },
+  mounted() {
+       var api = window.location.pathname;
+       this.id = api.split('/')[2]; 
+       let myInit = { method: 'GET', 
+                       headers: {
+                             'Accept': 'application/json',
+                             'Content-Type': 'application/json',
+                             'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
+                              },
+                      };
+      if(api!==''){
+          fetch('/api/v2.0/' + this.id + '/views/' ,myInit).then(res => {
+        return res.json();
+      })
+      .then(value => {
+      
+        this.share = value.shares;
+        this.radio1= this.share.tag;
+        this.title = this.share.title;
+        this.input = this.share.share;
+
+        
+      });
+      }
+    },
 }
 </script>
 
