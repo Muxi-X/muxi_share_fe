@@ -27,7 +27,7 @@
     <div :class="$style.card_container">
       <md-card>
         <div :class="$style.comment_title">Comments</div>
-        <div v-for="item in items">
+        <div v-for="item in items" :key="item">
           <md-card-header>
             <md-avatar>
               <img v-bind:src="item.avatar" alt="People">

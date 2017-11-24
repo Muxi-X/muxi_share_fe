@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="/send">
+    <a href="/send" v-if="add">
       <div :class="$style.button_container">
         <md-button class="md-fab md-fab-bottom-right">
           <md-icon>add</md-icon>
@@ -24,6 +24,7 @@
 
 <script>
 import { bus } from '../bus.js'
+import Cookie from '../common/cookie.js'
 var route = ["/new","/hot","/mine","/frontend","/backend","/android","/design","/product","/"]
 export default {
   data() {
@@ -31,7 +32,15 @@ export default {
       api: "",
       url: "",
       Items: [],
-      page_num: 1
+      page_num: 1,
+      add:false
+    }
+  },
+  mounted(){
+    let cookie=Cookie.getCookie("url");
+    console.log("cookie:"+cookie);
+    if(cookie!==""){
+      this.add=true;
     }
   },
     methods: {

@@ -6,7 +6,7 @@
       </md-button>
       <h2 class="md-title" style="flex: 1">木犀分享</h2>
       <md-button href="/" class="md-warn">首页</md-button>
-      <md-button href="http://auth.muxixyz.com/logout/" class="md-warn">登出</md-button>
+      <md-button   @click="login"  class="md-warn">登录</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav" @open="open('Left')" @close="close('Left')">
       <md-toolbar class="md-medium">
@@ -36,8 +36,13 @@
 
 
 <script>
+import Cookie from '../common/cookie.js'
 export default {
   methods: {
+         login() {
+            Cookie.setCookie('url', window.location.href);
+            window.location = "http://auth.muxixyz.com/logout/";
+        },
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();
     },
