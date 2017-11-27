@@ -37,8 +37,8 @@ export default {
     }
   },
   mounted(){
-    let cookie=Cookie.getCookie("url");
-    console.log("cookie:"+cookie);
+    let cookie=Cookie.getCookie("token");
+    console.log("token:"+cookie);
     if(cookie!==""){
       this.add=true;
     }
