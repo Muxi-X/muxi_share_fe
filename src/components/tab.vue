@@ -33,16 +33,16 @@ export default {
       url: "",
       Items: [],
       page_num: 1,
-      add:false
+      add:true
     }
   },
-  mounted(){
-    let cookie=Cookie.getCookie("token");
-    console.log("token:"+cookie);
-    if(cookie!==""){
-      this.add=true;
-    }
-  },
+  // mounted(){
+  //   let cookie=Cookie.getCookie("token");
+  //   console.log("token:"+cookie);
+  //   if(cookie!==""){
+  //     this.add=true;
+  //   }
+  // },
     methods: {
       change(e) {
         if(route.indexOf(window.location.pathname) > -1){
@@ -54,8 +54,8 @@ export default {
           else {
             this.url = "?sort=" + this.api
           }
-          fetch('/api/v2.0/'+ this.url).then(res => {
-            return res.json();
+          fetch('http://share.muxixyz.test:5488/api/v2.0/'+ this.url).then(res => {
+            // return res.json();
           })
           .then(value => {
             this.Items = value.shares

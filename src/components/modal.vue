@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         login() {
-            Cookie.setCookie('url', window.location.href);
+            // Cookie.setCookie('url', window.location.href);
             window.location = "https://pass.muxixyz.com?landing=blog.muxixyz.com/landing"
             // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         },

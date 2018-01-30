@@ -40,8 +40,9 @@ import Cookie from '../common/cookie.js'
 export default {
   methods: {
          login() {
-            Cookie.setCookie('url', window.location.href);
-            window.location = "http://auth.muxixyz.com/logout/";
+            // Cookie.setCookie('url', window.location.href);
+            window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+            // window.location = "https://pass.muxixyz.com/?landing=localhost://3000";
         },
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();

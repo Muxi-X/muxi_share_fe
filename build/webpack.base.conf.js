@@ -16,7 +16,8 @@ module.exports = {
         entry: {
             index: './src/index.js',
             view: './src/view.js',
-            send: './src/send.js'
+            send: './src/send.js',
+            landing:'./src/landing.js'
         },
         output: {
             path: path.join(__dirname, "../"),
@@ -103,5 +104,14 @@ module.exports = {
             template: path.join(__dirname, '../template/send.ejs'),
             chunks: ['send']
         }),
+        new HtmlWebpackPlugin({
+            alwaysWriteToDisk: true,
+            filename: 'template/landing.html',
+            inject: false,
+            template: path.join(__dirname, '../template/landing.ejs'),
+            chunks: ['landing']
+        }),
+        new HtmlWebpackHarddiskPlugin()
     ]
+    
 }
