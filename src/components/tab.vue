@@ -33,16 +33,9 @@ export default {
       url: "",
       Items: [],
       page_num: 1,
-      // add:true
     }
   },
-  // mounted(){
-  //   let cookie=Cookie.getCookie("token");
-  //   console.log("token:"+cookie);
-  //   if(cookie!==""){
-  //     this.add=true;
-  //   }
-  // },
+
     methods: {
       getToken(){
         let token =Cookie.getCookie('token');

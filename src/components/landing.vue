@@ -16,7 +16,6 @@ export default {
     },
     mounted() {
         this.username = window.location.href.split('?')[1].split('&')[0].split('=')[1]
-        console.log('this.username:'+this.username)
         Cookie.setCookie('username',this.username);
         Cookie.setCookie('Mt', window.location.href.split('?')[1].split('&')[1].split('=')[1])
         fetch("/api/v2.0/login/", {

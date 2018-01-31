@@ -46,7 +46,7 @@ marked.setOptions({
 export default {
   data() {
     return {
-      id:0,
+      id:'',
       title:'',
       radio1: "",
       input:'# hello',
@@ -61,7 +61,7 @@ export default {
   },
   computed: {
     compiledMarkdown: function() {
-      return marked(this.input, { sanitize: false })
+      return marked(this.input||'', { sanitize: false })
     }
   },
   methods: {
@@ -73,24 +73,43 @@ export default {
       if(this.title===''||this.radio1===''||this.input===''){
         alert('请将信息填完整')
       }else{
-        let data={}
-        data.title=this.title
-        data.share=this.input
-        data.tags=this.radio1  
-        let myInit = { method: 'Post', 
-                       body: JSON.stringify(data),
-                       headers: {
-                             'Accept': 'application/json',
-                             'Content-Type': 'application/json',
-                             'token':  Cookie.getCookie('token') //token
-                              },
+        let header ={
+                     'Accept': 'application/json',
+                     'Content-Type': 'application/json',
+                     'token':  Cookie.getCookie('token') //toke
+                    };
+        
+        if(this.id!==''&& this.id!==null && this.id!==undefined){
+          //重新编辑
+          let rewrite = {
+            share:this.input,
+            title:this.title
+          }
+          let myInitRe = { method: 'put', 
+                       headers: header,
+                       body:JSON.stringify(rewrite)
                       };
-         fetch(`/api/v2.0/send/`,myInit)
+          fetch(`/api/v2.0/${this.id}/edit/`,myInitRe).then(res=>{
+            if(res.ok){
+              this.changeWeb()
+            }else{
+              alert('服务器出错')
+            }
+          })   
+        }else{
+          let data={}
+          data.title=this.title
+          data.share=this.input
+          data.tags=this.radio1  
+          let myInitNe = {
+            method:'post',
+            headers:header,
+            body: JSON.stringify(data)
+          }
+         fetch(`/api/v2.0/send/`,myInitNe)
          .then(res=>{
           if(res.ok){
              this.changeWeb();
-          }else if(res.status===401){
-            alert('你还未登录')
           }else{
              alert('服务器发生错误')
           }
@@ -101,10 +120,13 @@ export default {
          .catch(error=>{
            console.log('There has been a problem with your fetch operation:'+ error.message)
          })
-      }      
+       }  
+      }    
     },
     changeWeb:function(){
-        window.location.href=this.radio1
+       
+        window.location =  '/'
+        
     }
   },
   mounted() {
@@ -114,7 +136,7 @@ export default {
                        headers: {
                              'Accept': 'application/json',
                              'Content-Type': 'application/json',
-                             'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
+                             'token': Cookie.getCookie('token') //token
                               },
                       };
       if(api!==''){

@@ -115,7 +115,7 @@ export default {
       },
       compiledMarkdown() {
        this.items.forEach(function(value){
-       value.share = marked(value.share, {sanitize: true })
+       value.share = marked(value.share||'', {sanitize: true })
        })
       }
     }

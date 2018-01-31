@@ -47,7 +47,6 @@ export default {
   mounted(){
    if(this.haveToken()){
      this.username = Cookie.getCookie('username')
-     console.log('this.username:'+this.username)
    }else{
      this.username = '登陆'
    } 
@@ -66,17 +65,19 @@ export default {
           //应该跳转到个人中心
           window.location = '/'
         }else{
-           window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          //  window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
         }
         // Cookie.setCookie('url', window.location.href);
-        // window.location = "https://pass.muxixyz.com/?landing=localhost://3000";
+ 
     },
     logout(){
-      console.log('logout')
+     
       //清除存在cookie中的share设置的属性
       Cookie.clearCookie('token');
       Cookie.clearCookie('Mt');
       Cookie.clearCookie('uid');
+      Cookie.clearCookie('username');
       //href="http://auth.muxixyz.com/logout/"
       window.location = '/'
     },

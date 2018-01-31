@@ -16,7 +16,8 @@
 
 
 <script>
-
+import haveToken from '../common/haveToken'
+import Cookie from '../common/cookie'
 export default {
   data() {
     return{
@@ -27,23 +28,29 @@ export default {
   methods: {
     submit_method(e){
       e.stopPropagation();
-      if(this.text) {
-        fetch('/api/v2.0/' + this.id + '/add_comment/', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
-          },
-          body: JSON.stringify({
-            comment: this.text
+      
+      if(haveToken()){
+
+        if(this.text) {
+          fetch('/api/v2.0/' + this.id + '/add_comment/', {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'token': Cookie.getCookie('token') //token
+            },
+            body: JSON.stringify({
+              comment: this.text
+            })
           })
-        })
-        .then(res => {
-          this.text=""
-          // this.$parent.fetchComments()
-          this.$emit('newComment')
-        })
+          .then(res => {
+            this.text=""
+            // this.$parent.fetchComments()
+            this.$emit('newComment')
+          })
+        }
+      }else{
+        alert('请先登陆！')
       }
     }
   }

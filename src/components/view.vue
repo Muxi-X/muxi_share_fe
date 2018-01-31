@@ -15,7 +15,7 @@
         </md-card-header>
         <md-divider class="md-inset"></md-divider>
         <div :class="$style.sharetext">
-          <md-card-content>{{share.share}}</md-card-content>
+          <md-card-content  v-html="compiledMarkdown">{{share.share}}</md-card-content>
         </div>
        
         <div>
@@ -50,6 +50,18 @@
 import header from './header.vue'
 import footer from './footer.vue'
 import show from './show.vue'
+import Cookie from '../common/cookie'
+var marked = require('marked')
+marked.setOptions({
+	renderer: new marked.Renderer(),
+	gfm: true,
+	tables: true,
+	breaks: false,
+	pedantic: false,
+	sanitize: true,
+	smartLists: true,
+	smartypants: false
+});
 
 export default {
     data() {
@@ -65,6 +77,11 @@ export default {
       "he": header,
       "foot": footer,
       "show": show
+    },
+    computed: {
+      compiledMarkdown: function() {
+        return marked(this.share.share||'', { sanitize: false })
+      }
     },
     mounted() {
       var api = window.location.pathname;
@@ -92,12 +109,12 @@ export default {
                        headers: {
                              'Accept': 'application/json',
                              'Content-Type': 'application/json',
-                             'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
+                             'token': Cookie.getCookie('token') //token
                               },
                       };
         fetch('/api/v2.0/'+this.id+'/delete/',myInit).then(res=>{
           if(res.ok){
-            window.location.href=this.share.tag;
+            window.location='/';
           }else{
             alert('你不是作者无法删除评论');
           }
