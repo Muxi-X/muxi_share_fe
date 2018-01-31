@@ -51,17 +51,7 @@ import header from './header.vue'
 import footer from './footer.vue'
 import show from './show.vue'
 import Cookie from '../common/cookie'
-var marked = require('marked')
-marked.setOptions({
-	renderer: new marked.Renderer(),
-	gfm: true,
-	tables: true,
-	breaks: false,
-	pedantic: false,
-	sanitize: true,
-	smartLists: true,
-	smartypants: false
-});
+import marked from '../common/marked'
 
 export default {
     data() {
@@ -100,7 +90,6 @@ export default {
           return res.json()
         })
         .then(res => {
-          console.log(this.id)
           this.items = res.comments
         })
       },

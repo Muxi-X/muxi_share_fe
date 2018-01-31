@@ -29,19 +29,9 @@
 import header from './header.vue'
 import footer from './footer.vue'
 import Cookie from '../common/cookie.js'
-
+import marked from '../common/marked'
 var _ = require('lodash');
-var marked = require('marked');
-marked.setOptions({
-	renderer: new marked.Renderer(),
-	gfm: true,
-	tables: true,
-	breaks: false,
-	pedantic: false,
-	sanitize: true,
-	smartLists: true,
-	smartypants: false
-});
+
 
 export default {
   data() {
@@ -115,7 +105,7 @@ export default {
           }
             })
          .then(value=>{
-           console.log(value)
+          
          })
          .catch(error=>{
            console.log('There has been a problem with your fetch operation:'+ error.message)

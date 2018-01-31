@@ -39,7 +39,6 @@ export default {
     methods: {
       getToken(){
         let token =Cookie.getCookie('token');
-        console.log(token)
         if(token!==null&&token!==undefined&&token!==''){
             return true;
         }
