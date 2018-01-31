@@ -38,6 +38,7 @@
 
 <script>
 import Cookie from '../common/cookie.js'
+import haveToken from '../common/haveToken'
 export default {
   data() {
     return {
@@ -45,22 +46,22 @@ export default {
     }
   },
   mounted(){
-   if(this.haveToken()){
+   if(haveToken()){
      this.username = Cookie.getCookie('username')
    }else{
      this.username = '登陆'
    } 
   },
   methods: {
-     haveToken(){
-      let token = Cookie.getCookie('token');
-      if(token!==undefined&&token!==null&&token!=''){
-        return true;
-      }
-      return false;
-    },
+    //  haveToken(){
+    //   let token = Cookie.getCookie('token');
+    //   if(token!==undefined&&token!==null&&token!=''){
+    //     return true;
+    //   }
+    //   return false;
+    // },
     login() {
-        if(this.haveToken()){
+        if(haveToken()){
           console.log('!!应该跳转到个人中心')
           //应该跳转到个人中心
           window.location = '/'

@@ -105,7 +105,7 @@ export default {
           if(res.ok){
             window.location='/';
           }else{
-            alert('你不是作者无法删除评论');
+            alert('你不是作者无法删除');
           }
         })
       }

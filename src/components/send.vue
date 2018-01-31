@@ -101,7 +101,9 @@ export default {
           if(res.ok){
              this.changeWeb();
           }else{
-             alert('服务器发生错误')
+            
+             alert('服务器发生错误');
+             
           }
             })
          .then(value=>{
@@ -129,10 +131,12 @@ export default {
                              'token': Cookie.getCookie('token') //token
                               },
                       };
-      if(api!==''){
-          fetch('/api/v2.0/' + this.id + '/views/' ,myInit).then(res => {
-        return res.json();
-      })
+                      
+      if(this.id!==''&&this.id!==undefined&&this.id!==null){
+          fetch('/api/v2.0/' + this.id + '/views/' ,myInit)
+          .then(res => {
+            return res.json();
+          })
       .then(value => {
       
         this.share = value.shares;
