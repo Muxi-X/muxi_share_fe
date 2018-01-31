@@ -16,6 +16,8 @@ export default {
     },
     mounted() {
         this.username = window.location.href.split('?')[1].split('&')[0].split('=')[1]
+        console.log('this.username:'+this.username)
+        Cookie.setCookie('username',this.username);
         Cookie.setCookie('Mt', window.location.href.split('?')[1].split('&')[1].split('=')[1])
         fetch("/api/v2.0/login/", {
             method: 'POST',
@@ -60,7 +62,8 @@ export default {
             Cookie.setCookie("token", value.token)
             Cookie.setCookie("uid", value.uid)
         })
-        this.url = Cookie.getCookie("url")
+        // this.url = Cookie.getCookie("url")
+        this.url = '/'
         setTimeout(() => {
             window.location = this.url;
         }, 1000)

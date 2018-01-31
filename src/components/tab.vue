@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a href="/send" v-if="add">
+    <a href="/send" v-if="getToken()">
       <div :class="$style.button_container">
         <md-button class="md-fab md-fab-bottom-right">
           <md-icon>add</md-icon>
@@ -33,7 +33,7 @@ export default {
       url: "",
       Items: [],
       page_num: 1,
-      add:true
+      // add:true
     }
   },
   // mounted(){
@@ -44,6 +44,14 @@ export default {
   //   }
   // },
     methods: {
+      getToken(){
+        let token =Cookie.getCookie('token');
+        console.log(token)
+        if(token!==null&&token!==undefined&&token!==''){
+            return true;
+        }
+        return false;
+      },
       change(e) {
         if(route.indexOf(window.location.pathname) > -1){
           window.history.pushState(null, null, route[e]);

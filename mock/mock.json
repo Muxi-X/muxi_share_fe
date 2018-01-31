@@ -49,6 +49,12 @@
 			"async": false
 		},
 		{
+			"name": "landing",
+			"endpoint": "/landing",
+			"template": "landing",
+			"async": false
+		},
+		{
 			"name": "product",
 			"endpoint": "/product",
 			"template": "index",

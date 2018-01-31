@@ -28,6 +28,7 @@
 <script>
 import header from './header.vue'
 import footer from './footer.vue'
+import Cookie from '../common/cookie.js'
 
 var _ = require('lodash');
 var marked = require('marked');
@@ -64,9 +65,6 @@ export default {
     }
   },
   methods: {
-    change() {
-      // console.log(this.radio1)
-    },
     update:
         _.debounce(function (e) {
         this.input = e.target.value
@@ -78,13 +76,13 @@ export default {
         let data={}
         data.title=this.title
         data.share=this.input
-        data.tags=this.radio1   
+        data.tags=this.radio1  
         let myInit = { method: 'Post', 
                        body: JSON.stringify(data),
                        headers: {
                              'Accept': 'application/json',
                              'Content-Type': 'application/json',
-                             'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpZCI6N30.P5rU9mV7xAVwTKf06RA7o1BOvF9jWLGDpYZ_fohWL6s' //token
+                             'token':  Cookie.getCookie('token') //token
                               },
                       };
          fetch(`/api/v2.0/send/`,myInit)
