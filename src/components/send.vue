@@ -8,11 +8,9 @@
         </md-input-container>
       </div>
       <div>
-        <md-radio v-model="radio1" name="my-test-group1" md-value="frontend">frontend</md-radio>
-        <md-radio v-model="radio1" name="my-test-group1" md-value="backend">backend</md-radio>
-        <md-radio v-model="radio1" name="my-test-group1" md-value="android">Android</md-radio>
-        <md-radio v-model="radio1" name="my-test-group1" md-value="design">design</md-radio>
-        <md-radio v-model="radio1" name="my-test-group1" md-value="product">product</md-radio>
+        
+        <md-radio v-model="radio1" v-for='(choice,index) in choices' :key="index" name="my-test-group1" :md-value="choice">{{choice}}</md-radio>
+      
       </div>
        <div :class="$style.editor">
        <textarea :value="input" @input="update"></textarea>
@@ -37,6 +35,7 @@ var _ = require('lodash');
 export default {
   data() {
     return {
+      choices:['frontend','backend','android','design','product'],
       id:'',
       title:'',
       radio1: "",
@@ -64,11 +63,6 @@ export default {
       if(this.title===''||this.radio1===''||this.input===''){
         alert('请将信息填完整')
       }else{
-        // let header ={
-        //              'Accept': 'application/json',
-        //              'Content-Type': 'application/json',
-        //              'token':  Cookie.getCookie('token') //toke
-        //             };
         let token = Cookie.getCookie('token');
         if(this.id!==''&& this.id!==null && this.id!==undefined){
           //重新编辑
@@ -76,44 +70,14 @@ export default {
             share:this.input,
             title:this.title
           }
-          //rewrite = JSON.stringify(rewrite)
-          
-          // let myInitRe = { method: 'put', 
-          //              headers: header,
-          //              body:JSON.stringify(rewrite)
-          //             };
-
-          API.rewriteShare(this.id,rewrite,token)
-         
-          // fetch(`/api/v2.0/${this.id}/edit/`,myInitRe).then(res=>{
-          //   if(res.ok){
-              
-          //   }else{
-          //     alert('服务器出错')
-          //   }
-          // })   
+          API.rewriteShare(this.id,rewrite,token)  
         }else{
           let data={}
           data.title=this.title
           data.share=this.input
           data.tags=this.radio1 
-          //data =  JSON.stringify(data);
           API.sendShare(data,token);
-          // let myInitNe = {
-          //   method:'post',
-          //   headers:header,
-          //   body: JSON.stringify(data)
-          // }
-        //  fetch(`/api/v2.0/send/`,myInitNe)
-        //  .then(res=>{
-        //   if(res.ok){
-            
-          // }else{
-            
-          //    alert('服务器发生错误');
-             
-          // }
-            // })
+ 
         
        } 
         this.changeWeb(); 

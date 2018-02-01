@@ -29,21 +29,18 @@ export default {
      
         API.login(bodyin)
         .then(res => {
-      
-      
          if(res!==null&&res!==undefined){
-            
-                return res
-            } else {
-                let bodyup = { 
-                    username: this.username,
-                    password: "muxistudio@ccnu"
-               }
-                API.signup(bodyup)
+            return res
+        } else {
+            let bodyup = { 
+                username: this.username,
+                password: "muxistudio@ccnu"
+            }
+            API.signup(bodyup)
                 .then(value=>{
                      API.login(bodyin)
                 })
-           }
+            }
        })
         .then(value => {
             Cookie.setCookie("token", value.token)
