@@ -55,7 +55,7 @@ export default {
   methods: {
     login() {
         if(haveToken()){
-          console.log('!!应该跳转到个人中心')
+          
           //应该跳转到个人中心
           window.location = '/'
         }else{

@@ -19,7 +19,7 @@ export default {
         this.username = window.location.href.split('?')[1].split('&')[0].split('=')[1]
         Cookie.setCookie('username',this.username);
         Cookie.setCookie('Mt', window.location.href.split('?')[1].split('&')[1].split('=')[1])
-        console.log(this.username)
+     
         let bodyin = {
             username: this.username,
             password: btoa("muxistudio@ccnu")
