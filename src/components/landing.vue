@@ -6,6 +6,7 @@
 
 <script>
 import Cookie from '../common/cookie.js'
+import API from '../common/service'
 export default {
     data() {
         return {
@@ -18,50 +19,38 @@ export default {
         this.username = window.location.href.split('?')[1].split('&')[0].split('=')[1]
         Cookie.setCookie('username',this.username);
         Cookie.setCookie('Mt', window.location.href.split('?')[1].split('&')[1].split('=')[1])
-        fetch("/api/v2.0/login/", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: this.username,
-                password: btoa("muxistudio@ccnu")
-            })
-        }).then(res => {
-            if (res.ok) {
-                return res.json()
+        console.log(this.username)
+        let bodyin = {
+            username: this.username,
+            password: btoa("muxistudio@ccnu")
+
+        }
+                
+     
+        API.login(bodyin)
+        .then(res => {
+      
+      
+         if(res!==null&&res!==undefined){
+            
+                return res
             } else {
-                fetch("/api/v2.0/signup/", {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: this.username,
-                        password: "muxistudio@ccnu"
-                    })
-                }).then(value => {
-                  
-                    fetch("/api/v2.0/login/", {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            username: this.username,
-                            password: btoa("muxistudio@ccnu")
-                        })
-                    })
+                let bodyup = { 
+                    username: this.username,
+                    password: "muxistudio@ccnu"
+               }
+                API.signup(bodyup)
+                .then(value=>{
+                     API.login(bodyin)
                 })
-            }
-        }).then(value => {
+           }
+       })
+        .then(value => {
             Cookie.setCookie("token", value.token)
             Cookie.setCookie("uid", value.uid)
+            // Cookie.setCookie('avatar',value.avatar)
         })
-        // this.url = Cookie.getCookie("url")
+        this.url = Cookie.getCookie("url")
         this.url = '/'
         setTimeout(() => {
             window.location = this.url;

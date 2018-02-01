@@ -19,7 +19,7 @@
         </div>
        
         <div>
-          <md-button class="md-raised md-primary " @click="delComment"  :class="$style.btn">DELETE</md-button>
+          <md-button class="md-raised md-primary " @click="delShare"  :class="$style.btn">DELETE</md-button>
           <md-button class="md-raised md-primary " :href="'/send/'+id "  :class="$style.btn">CHANGE</md-button>
         </div>
       </md-card>
@@ -52,6 +52,7 @@ import footer from './footer.vue'
 import show from './show.vue'
 import Cookie from '../common/cookie'
 import marked from '../common/marked'
+import API from '../common/service'
 
 export default {
     data() {
@@ -76,41 +77,26 @@ export default {
     mounted() {
       var api = window.location.pathname;
       this.id = api.split('/')[2]; //把 id props 给子组件
-      fetch('/api/v2.0/' + this.id + '/views/').then(res => {
-        return res.json()
-      })
-      .then(value => {
+      API.getView(this.id).then(value => {
         this.share = value.shares
         this.items = value.comments
       })
     },
     methods: {
       fetchComments() {
-        fetch('/api/v2.0/' + this.id + '/views/').then(res => {  //api/v2.0/<int:id>/comments/ api改成/view
-          return res.json()
-        })
-        .then(res => {
+        API.getView(this.id).then(res => {
           this.items = res.comments
         })
       },
-      delComment(){
-         let myInit = { method: 'DELETE', 
-                       headers: {
-                             'Accept': 'application/json',
-                             'Content-Type': 'application/json',
-                             'token': Cookie.getCookie('token') //token
-                              },
-                      };
-        fetch('/api/v2.0/'+this.id+'/delete/',myInit).then(res=>{
-          if(res.ok){
-            window.location='/';
-          }else{
-            alert('你不是作者无法删除');
-          }
-        })
-      }
+      delShare(){
+        let token = Cookie.getCookie('token');
+        API.deleteShare(this.id,token).then(res=>{
+        if(res!==null&&res!==undefined)
+        window.location='/';
+      })
     }
   }
+}
 </script>
 
 

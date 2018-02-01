@@ -30,6 +30,7 @@ import header from './header.vue'
 import footer from './footer.vue'
 import Cookie from '../common/cookie.js'
 import marked from '../common/marked'
+import API from '../common/service'
 var _ = require('lodash');
 
 
@@ -63,56 +64,59 @@ export default {
       if(this.title===''||this.radio1===''||this.input===''){
         alert('请将信息填完整')
       }else{
-        let header ={
-                     'Accept': 'application/json',
-                     'Content-Type': 'application/json',
-                     'token':  Cookie.getCookie('token') //toke
-                    };
-        
+        // let header ={
+        //              'Accept': 'application/json',
+        //              'Content-Type': 'application/json',
+        //              'token':  Cookie.getCookie('token') //toke
+        //             };
+        let token = Cookie.getCookie('token');
         if(this.id!==''&& this.id!==null && this.id!==undefined){
           //重新编辑
           let rewrite = {
             share:this.input,
             title:this.title
           }
-          let myInitRe = { method: 'put', 
-                       headers: header,
-                       body:JSON.stringify(rewrite)
-                      };
-          fetch(`/api/v2.0/${this.id}/edit/`,myInitRe).then(res=>{
-            if(res.ok){
-              this.changeWeb()
-            }else{
-              alert('服务器出错')
-            }
-          })   
+          //rewrite = JSON.stringify(rewrite)
+          
+          // let myInitRe = { method: 'put', 
+          //              headers: header,
+          //              body:JSON.stringify(rewrite)
+          //             };
+
+          API.rewriteShare(this.id,rewrite,token)
+         
+          // fetch(`/api/v2.0/${this.id}/edit/`,myInitRe).then(res=>{
+          //   if(res.ok){
+              
+          //   }else{
+          //     alert('服务器出错')
+          //   }
+          // })   
         }else{
           let data={}
           data.title=this.title
           data.share=this.input
-          data.tags=this.radio1  
-          let myInitNe = {
-            method:'post',
-            headers:header,
-            body: JSON.stringify(data)
-          }
-         fetch(`/api/v2.0/send/`,myInitNe)
-         .then(res=>{
-          if(res.ok){
-             this.changeWeb();
-          }else{
+          data.tags=this.radio1 
+          //data =  JSON.stringify(data);
+          API.sendShare(data,token);
+          // let myInitNe = {
+          //   method:'post',
+          //   headers:header,
+          //   body: JSON.stringify(data)
+          // }
+        //  fetch(`/api/v2.0/send/`,myInitNe)
+        //  .then(res=>{
+        //   if(res.ok){
             
-             alert('服务器发生错误');
+          // }else{
+            
+          //    alert('服务器发生错误');
              
-          }
-            })
-         .then(value=>{
-          
-         })
-         .catch(error=>{
-           console.log('There has been a problem with your fetch operation:'+ error.message)
-         })
-       }  
+          // }
+            // })
+        
+       } 
+        this.changeWeb(); 
       }    
     },
     changeWeb:function(){
@@ -122,21 +126,11 @@ export default {
     }
   },
   mounted() {
+      let token = Cookie.getCookie('token')
        var api = window.location.pathname;
        this.id = api.split('/')[2]; 
-       let myInit = { method: 'GET', 
-                       headers: {
-                             'Accept': 'application/json',
-                             'Content-Type': 'application/json',
-                             'token': Cookie.getCookie('token') //token
-                              },
-                      };
-                      
       if(this.id!==''&&this.id!==undefined&&this.id!==null){
-          fetch('/api/v2.0/' + this.id + '/views/' ,myInit)
-          .then(res => {
-            return res.json();
-          })
+      API.getView(this.id)
       .then(value => {
       
         this.share = value.shares;

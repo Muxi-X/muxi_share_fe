@@ -49,7 +49,7 @@
 <script>
 import { bus } from '../bus.js'
 import marked from '../common/marked'
-
+import API from '../common/service'
 
 export default {
     data() {
@@ -60,9 +60,7 @@ export default {
       }
     },
     mounted() {
-      fetch(`/api/v2.0/?page=${this.page_num}`).then(res => {
-        return res.json()
-      })
+      API.choosePage(this.page_num)
       .then(value => {
         this.items = value.shares
         this.compiledMarkdown()
@@ -78,9 +76,7 @@ export default {
         this.items = Items
       },
       pageChange(){
-        fetch(`/api/v2.0/?page=${this.page_num}`).then(res => {
-        return res.json()
-        })
+      API.choosePage(this.page_num)
       .then(value => {
         this.items = value.shares
         this.compiledMarkdown()

@@ -27,7 +27,7 @@ import header from './header.vue'
 import tab from './tab.vue'
 import list from './list.vue'
 import footer from './footer.vue'
-
+import API from '../common/service'
 export default {
   data(){
     return {
@@ -44,9 +44,7 @@ export default {
     },
     methods: {
       pagechange(){
-        fetch('/api/v2.0/?page=' + this.page_num).then(res => {
-          return res.json();
-        })
+        API.choosePage(this.page_num)
         .then(value => {
           this.items = value.shares
           this.page_num = value.page

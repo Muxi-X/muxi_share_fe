@@ -53,13 +53,6 @@ export default {
    } 
   },
   methods: {
-    //  haveToken(){
-    //   let token = Cookie.getCookie('token');
-    //   if(token!==undefined&&token!==null&&token!=''){
-    //     return true;
-    //   }
-    //   return false;
-    // },
     login() {
         if(haveToken()){
           console.log('!!应该跳转到个人中心')
@@ -67,9 +60,9 @@ export default {
           window.location = '/'
         }else{
           window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
-          //  window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+         
         }
-        // Cookie.setCookie('url', window.location.href);
+       
  
     },
     logout(){
@@ -79,7 +72,6 @@ export default {
       Cookie.clearCookie('Mt');
       Cookie.clearCookie('uid');
       Cookie.clearCookie('username');
-      //href="http://auth.muxixyz.com/logout/"
       window.location = '/'
     },
     toggleLeftSidenav() {

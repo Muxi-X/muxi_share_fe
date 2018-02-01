@@ -18,6 +18,7 @@
 <script>
 import haveToken from '../common/haveToken'
 import Cookie from '../common/cookie'
+import API from '../common/service'
 export default {
   data() {
     return{
@@ -30,20 +31,10 @@ export default {
       e.stopPropagation();
       
       if(haveToken()){
-
+        let body ={comment: this.text};
+        let token = Cookie.getCookie('token');
         if(this.text) {
-          fetch('/api/v2.0/' + this.id + '/add_comment/', {
-            method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json',
-              'token': Cookie.getCookie('token') //token
-            },
-            body: JSON.stringify({
-              comment: this.text
-            })
-          })
-          .then(res => {
+          API.sendComment(this.id,body,token).then(res => {
             this.text=""
             // this.$parent.fetchComments()
             this.$emit('newComment')
