@@ -14,8 +14,6 @@ function Fetch(url,opt={}){
 
     .then(response =>{
         return response.json().then((json) => { 
-            for( let value in json)
-            console.log('result:'+value);
             switch (response.status) {
               case 200:
                 return json;
