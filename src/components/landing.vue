@@ -44,7 +44,7 @@ export default {
        })
         .then(value => {
             Cookie.setCookie("token", value.token)
-            Cookie.setCookie("uid", value.uid)
+            Cookie.setCookie("uid", value.user_id)
             // Cookie.setCookie('avatar',value.avatar)
         })
         this.url = Cookie.getCookie("url")

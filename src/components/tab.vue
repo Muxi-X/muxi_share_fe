@@ -27,7 +27,6 @@ import { bus } from '../bus.js'
 import Cookie from '../common/cookie.js'
 import API from '../common/service'
 import haveToken from '../common/haveToken'
-//"/mine",
 var route = ["/new","/mine","/hot","/frontend","/backend","/android","/design","/product","/"]
 export default {
   data() {
@@ -49,6 +48,9 @@ export default {
           this.api = window.location.pathname.split('/')[1];
           if (this.api == "new"){
             this.url = ""
+          }
+          else if(this.api = 'mine'){
+            this.url = 'get_one_all/'+Cookie.getCookie('uid');
           }
           else {
             this.url = "?sort=" + this.api
