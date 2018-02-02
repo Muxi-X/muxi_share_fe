@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.css'
-import send from './components/send'
+import sendService from './components/sendService'
 
 
 Vue.use(VueMaterial)
@@ -25,6 +25,6 @@ Vue.material.registerTheme('default', {
 
 new Vue({
 	el: '#send',
-	render: h => h(send)
+	render: h => h(sendService)
 
 })

@@ -14,6 +14,8 @@ function Fetch(url,opt={}){
 
     .then(response =>{
         return response.json().then((json) => { 
+            for( let value in json)
+            console.log('result:'+value);
             switch (response.status) {
               case 200:
                 return json;
@@ -57,7 +59,8 @@ let service = {
             token:token
         })
     },
-    rewriteShare(id,body,token){
+    rewriteShare(body,token,id){
+       
        return Fetch('/api/v2.0/'+id+'/edit/',{
             method:'put',
             data:body,

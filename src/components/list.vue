@@ -11,6 +11,7 @@
               <div class="md-title"><div>{{item.title}}</div></div>
               <div class="md-subhead"><div>{{item.username}}</div></div>
             </md-card-header-text>
+            <div class="md-subhead">{{item.date}}</div>
           </md-card-header>
           <div :class="$style.content_container">
             <md-card-content v-html="item.share">
@@ -50,6 +51,7 @@
 import { bus } from '../bus.js'
 import marked from '../common/marked'
 import API from '../common/service'
+
 
 export default {
     data() {
