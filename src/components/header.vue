@@ -1,6 +1,6 @@
 <template>
   <div class="phone-viewport">
-    <md-toolbar>
+    <md-toolbar class="md-primary">
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
@@ -86,6 +86,7 @@ export default {
 
 <style lang="scss" module>
 .parallax{
+  background-color: azure;
   width: auto;
   height: 270px;
 }

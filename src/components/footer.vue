@@ -11,9 +11,11 @@
 </script>
 <style lang="scss" module>
 .footer_container{
+  
   width: 100%;
   height: 100px;
-  background-color: #0d47a1;
+  background-color: grey;
+  
 }
 .text_center{
   text-align: -webkit-center;

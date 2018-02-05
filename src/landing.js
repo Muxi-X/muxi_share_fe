@@ -8,11 +8,11 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
   primary: {
-		color: 'blue',
+		color: 'pink',
 	  hue: 900
 	},
   accent: {
-		color: 'pink',
+		color: 'white',
 	  hue: 500
 	},
   warn: {

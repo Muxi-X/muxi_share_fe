@@ -8,15 +8,15 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
   primary: {
-		color: 'blue',
-	  hue: 900
+		color: 'cyan',
+	  hue: 200
 	},
   accent: {
-		color: 'pink',
+		color: 'cyan',
 	  hue: 500
 	},
   warn: {
-		color: 'blue',
+		color: 'white',
 	  hue: 500
 	},
   background: 'white'

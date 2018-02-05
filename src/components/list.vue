@@ -26,7 +26,7 @@
             <md-chip>{{item.tag}}</md-chip>
             <div :class="$style.readmore_container">
               <md-card-actions>
-                <md-button class="md-primary" :href="'/view/' + item.id" >READ MORE</md-button>
+                <md-button class="" :href="'/view/' + item.id" >READ MORE</md-button>
               </md-card-actions>
             </div>
           </div>
@@ -37,9 +37,9 @@
       <div :class="$style.card_container">
         <div :class="$style.page_turn">
           <md-button class="md-raised md-primary page_turn_button" @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
-          <md-button class="md-primary page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
+          <md-button class="page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
           <span :class="$style.slash" v-show="this.page_num < this.pages_count">/</span>
-          <md-button class="md-primary pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
+          <md-button class=" pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
           <md-button class="md-raised md-primary page_turn_button" @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
           </div>
       </div>
@@ -113,8 +113,10 @@ export default {
 
 
 <style lang="scss" module>
+
 /*不要写死 子组件撑开 */
 .list_container{
+
   height: 100%;
 }
 .card_container{
@@ -123,8 +125,10 @@ export default {
   margin-right: auto;
   margin-top: 56px;
   margin-bottom: 56px;
+  
 }
 .content_container{
+  
   width: 630px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -135,6 +139,7 @@ export default {
   display: inline-block;
 }
 .ic_container{
+  
   margin-left: 32px;
   line-height: 52px;
 }

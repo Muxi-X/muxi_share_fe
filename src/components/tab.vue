@@ -7,7 +7,7 @@
         </md-button>
       </div>
     </a>
-    <md-tabs md-centered class="md-warn" @change="change">
+    <md-tabs md-centered class="md-accent" @change="change">
       <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
       <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
       <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
@@ -45,7 +45,7 @@ export default {
         return haveToken();
       },
       change(e) {
-      console.log('window.location.pathname:'+window.location.pathname)
+
         if(route.indexOf(window.location.pathname) > -1||window.location.pathname==='/'){
          
           window.history.pushState(null, null,route[e]);
