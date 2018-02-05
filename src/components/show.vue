@@ -8,8 +8,8 @@
         <md-textarea v-model.trim="text"></md-textarea>
       </md-input-container>
     </form>
-    <div :class="$style.submit_button">
-      <md-button v-on:click="submit_method" class="md-primary md-raised">Submit</md-button>
+    <div >
+      <md-button v-on:click="submit_method" :class="$style.submit_button" class="md-raised">Submit</md-button>
     </div>
   </div>
 </template>
@@ -59,5 +59,8 @@ export default {
 .submit_button{
   float: right;
   margin-right: 48px;
+  color:#2296f3;
+  border: solid 1px #2296f3;
+  border-radius: 10%;
 }
 </style>

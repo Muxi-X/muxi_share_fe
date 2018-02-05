@@ -8,7 +8,7 @@
               <img v-bind:src="item.avatar" alt="People"> <md-ink-ripple />
             </md-avatar>
             <md-card-header-text>
-              <div class="md-title"><div>{{item.title}}</div></div>
+              <div class="md-title" style="color:#2296f3"><div>{{item.title}}</div></div>
               <div class="md-subhead"><div>{{item.username}}</div></div>
             </md-card-header-text>
             <div class="md-subhead">{{item.date}}</div>
@@ -20,13 +20,13 @@
           <md-divider></md-divider>
           <div :class="$style.clear_float">
             <div :class="$style.ic_container">
-              <md-icon class="md-primary">comment</md-icon>
+              <md-icon >comment</md-icon>
             </div>
             <div :class="$style.comment_container">{{item.comment_num}}</div>
             <md-chip>{{item.tag}}</md-chip>
             <div :class="$style.readmore_container">
               <md-card-actions>
-                <md-button class="" :href="'/view/' + item.id" >READ MORE</md-button>
+                <md-button :class="$style.index_button" :href="'/view/' + item.id" >READ MORE</md-button>
               </md-card-actions>
             </div>
           </div>
@@ -36,11 +36,11 @@
      <!-- <div v-if="!this.page_count">nothing</div> -->
       <div :class="$style.card_container">
         <div :class="$style.page_turn">
-          <md-button class="md-raised md-primary page_turn_button" @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
+          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
           <md-button class="page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
           <span :class="$style.slash" v-show="this.page_num < this.pages_count">/</span>
           <md-button class=" pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
-          <md-button class="md-raised md-primary page_turn_button" @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
+          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
           </div>
       </div>
   </div>
@@ -69,7 +69,7 @@ export default {
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
       })
-      this.compiledMarkdown()
+      //this.compiledMarkdown()
     },
     created() {
       bus.$on('getItems',this.fetchData)
@@ -128,6 +128,12 @@ export default {
   margin-top: 56px;
   margin-bottom: 56px;
   
+}
+.index_button{
+ color:#2296f3;
+ border: solid 1px #2296f3;
+ border-radius: 10%;
+
 }
 .content_container{
   

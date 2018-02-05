@@ -1,6 +1,6 @@
 <template>
   <div class="phone-viewport">
-    <md-toolbar class="md-primary">
+    <md-toolbar style="background-color:#2296f3">
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>

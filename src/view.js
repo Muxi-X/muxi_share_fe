@@ -8,16 +8,16 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
   primary: {
-		color: 'cyan',
+		color: '#2296f3',
 	  hue: 200
 	},
   accent: {
-		color: 'cyan',
+		color: '#2296f3',
 	  hue: 500
 	},
   warn: {
-		color: 'white',
-	  hue: 500
+		color: '#2296f3',
+	  hue: 100
 	},
   background: 'white'
 })

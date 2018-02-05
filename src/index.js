@@ -10,18 +10,18 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('default', {
   primary: {
-		color: 'cyan',
-	  hue: 200
+		color: '#2296f3',
+	  hue: 600
 	},
   accent: {
-		color: 'cyan',
+		color: '#2296f3',
 	  hue: 100
 	},
   warn: {
 		color: 'white',
-	  hue: 500
+	  hue: 100
 	},
-  background: 'orange'
+  // background: 'orange'
 })
 
 new Vue({

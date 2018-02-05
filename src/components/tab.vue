@@ -1,13 +1,13 @@
-<template>
-  <div>
+<template  >
+  <div >
     <a href="/send" v-if="getToken()">
-      <div :class="$style.button_container">
-        <md-button class="md-fab md-fab-bottom-right">
-          <md-icon>add</md-icon>
+      <div :class="$style.button_container ">
+        <md-button class="md-fab md-fab-bottom-right" style="background-color:#2296f3">
+          <md-icon >add</md-icon>
         </md-button>
       </div>
     </a>
-    <md-tabs md-centered class="md-accent" @change="change">
+    <md-tabs md-centered  @change="change"  >
       <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
       <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
       <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>

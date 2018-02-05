@@ -2,13 +2,13 @@
   <div>
     <he></he>
     <div :class="$style.card_container">
-      <md-card class="md-warn">
+      <md-card >
         <md-card-header>
           <md-avatar class="md-large">
             <img v-bind:src="share.avatar" alt="People">
           </md-avatar>
           <md-card-header-text>
-            <div class="md-title">{{share.title}}</div>
+            <div class="md-title md-primary" style="color:#2296f3">{{share.title}}</div>
             <div class="md-subhead">{{share.username}}</div>
           </md-card-header-text>
           <div>{{share.date}}</div>
@@ -19,8 +19,8 @@
         </div>
        
         <div v-if="isAuthor">
-          <md-button class="md-raised md-primary " @click="delShare"  :class="$style.btn">DELETE</md-button>
-          <md-button class="md-raised md-primary " :href="'/send/'+id "  :class="$style.btn">CHANGE</md-button>
+          <md-button class="md-raised  " @click="delShare"  :class="$style.btn" >DELETE</md-button>
+          <md-button class="md-raised  " :href="'/send/'+id "  :class="$style.btn">CHANGE</md-button>
         </div>
       </md-card>
     </div>
@@ -107,6 +107,9 @@ export default {
 <style lang="scss" module>
 .btn{
   float: right;
+  color:#2296f3;
+  border: solid 1px #2296f3;
+  border-radius: 10%;
 }
 .card_container{
   width: 840px;
