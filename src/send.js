@@ -13,7 +13,7 @@ Vue.material.registerTheme('default', {
 	  hue: 300
 	},
   accent: {
-		color: 'white',
+		color: 'cyan',
 	  hue: 500
 	},
   warn: {

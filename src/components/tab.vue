@@ -66,6 +66,7 @@ export default {
             this.Items = value.shares
           })
           bus.$emit('getItems',this.Items)
+          bus.$emit('mark')
         }
       } 
     },

@@ -69,9 +69,11 @@ export default {
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
       })
+      this.compiledMarkdown()
     },
     created() {
       bus.$on('getItems',this.fetchData)
+      bus.$on('mark',this.compiledMarkdown)
     },
     methods: {
 	    fetchData(Items) {
@@ -104,7 +106,7 @@ export default {
       },
       compiledMarkdown() {
        this.items.forEach(function(value){
-       value.share = marked(value.share||'', {sanitize: true })
+          value.share = marked(value.share||'', {sanitize: true })
        })
       }
     }
