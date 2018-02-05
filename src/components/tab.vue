@@ -68,24 +68,7 @@ export default {
       if(uid!==undefined&&uid!==null&&uid!==''){
         this.mine = true
       }
-    //  if(route.indexOf(window.location.pathname) > -1){
-    //       window.history.pushState(null, null, route[e]);
-    //       this.api = window.location.pathname.split('/')[1];
-    //       if (this.api == "new"){
-    //         this.url = ""
-    //       }
-    //       else if(this.api == 'mine'){
-    //         this.url = 'get_one_all/'+Cookie.getCookie('uid');
-    //       }
-    //       else {
-    //         this.url = "?sort=" + this.api
-    //       }
-    //       API.getSortedPage(this.url).then(value => {
-    //         this.Items = value.shares
-    //       })
-    //       bus.$emit('getItems',this.Items)
-    //     }
-      } 
+    } 
     
     
   }
