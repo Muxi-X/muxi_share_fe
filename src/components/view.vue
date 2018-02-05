@@ -18,7 +18,7 @@
           <md-card-content  v-html="compiledMarkdown">{{share.share}}</md-card-content>
         </div>
        
-        <div>
+        <div v-if="isAuthor">
           <md-button class="md-raised md-primary " @click="delShare"  :class="$style.btn">DELETE</md-button>
           <md-button class="md-raised md-primary " :href="'/send/'+id "  :class="$style.btn">CHANGE</md-button>
         </div>
@@ -61,7 +61,8 @@ export default {
         share : {
           type: Object
         },
-        items: []
+        items: [],
+        isAuthor:false
       }
     },
     components: {
@@ -80,6 +81,9 @@ export default {
       API.getView(this.id).then(value => {
         this.share = value.shares
         this.items = value.comments
+        if(this.share.username ===  Cookie.getCookie('username')){
+          this.isAuthor = true;
+        }
       })
     },
     methods: {
