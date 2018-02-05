@@ -9,13 +9,13 @@
     </a>
     <md-tabs md-centered class="md-warn" @change="change">
       <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
-      <md-tab v-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
       <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
       <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
       <md-tab md-label="BACKEND" md-icon="build"></md-tab>
       <md-tab md-label="ANDROID" md-icon="android"></md-tab>
       <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
       <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
+      <md-tab v-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
     </md-tabs>
   </div>
 </template>
@@ -27,7 +27,7 @@ import { bus } from '../bus.js'
 import Cookie from '../common/cookie.js'
 import API from '../common/service'
 import haveToken from '../common/haveToken'
-var route = ["/new","/mine","/hot","/frontend","/backend","/android","/design","/product","/"]
+var route = ['/new',"/hot","/frontend","/backend","/android","/design","/product"]
 export default {
   data() {
     return {
@@ -35,7 +35,8 @@ export default {
       url: "",
       Items: [],
       page_num: 1,
-      mine:false
+      mine:false,
+
     }
   },
 
@@ -44,10 +45,13 @@ export default {
         return haveToken();
       },
       change(e) {
-        if(route.indexOf(window.location.pathname) > -1){
-          window.history.pushState(null, null, route[e]);
+      console.log('window.location.pathname:'+window.location.pathname)
+        if(route.indexOf(window.location.pathname) > -1||window.location.pathname==='/'){
+         
+          window.history.pushState(null, null,route[e]);
           this.api = window.location.pathname.split('/')[1];
-          if (this.api == "new"){
+         
+          if (this.api == "new" ){
             this.url = ""
           }
           else if(this.api == 'mine'){
@@ -55,7 +59,9 @@ export default {
           }
           else {
             this.url = "?sort=" + this.api
+          
           }
+         
           API.getSortedPage(this.url).then(value => {
             this.Items = value.shares
           })
@@ -66,8 +72,10 @@ export default {
     mounted(){
       let uid = Cookie.getCookie('uid');
       if(uid!==undefined&&uid!==null&&uid!==''){
-        this.mine = true
+        this.mine = true;
+        route.push('/mine')
       }
+      
     } 
     
     
