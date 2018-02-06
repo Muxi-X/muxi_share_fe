@@ -65,8 +65,6 @@ export default {
       API.choosePage(this.page_num)
       .then(value => {
         this.items = value.shares
-         console.log('first:')
-        console.log(this.items)
         this.compiledMarkdown()
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
@@ -80,8 +78,7 @@ export default {
     methods: {
 	    fetchData(Items) {
         this.items = Items
-        console.log('list:')
-        console.log(this.items)
+        
       },
       pageChange(){
       API.choosePage(this.page_num)
