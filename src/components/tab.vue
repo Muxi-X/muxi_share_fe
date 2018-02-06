@@ -64,9 +64,15 @@ export default {
          
           API.getSortedPage(this.url).then(value => {
             this.Items = value.shares
+            console.log('tab:')
+            console.log(this.Items)
+          }).then(()=>{
+            bus.$emit('getItems',this.Items)
+            bus.$emit('mark')
           })
-          bus.$emit('getItems',this.Items)
-          bus.$emit('mark')
+
+          
+          
         }
       } 
     },
