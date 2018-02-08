@@ -59,7 +59,7 @@ export default {
           //应该跳转到个人中心
           window.location = '/'
         }else{
-          window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          window.location = "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
          
         }
        

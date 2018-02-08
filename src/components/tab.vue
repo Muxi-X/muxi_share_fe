@@ -67,10 +67,7 @@ export default {
           }).then(()=>{
             bus.$emit('getItems',this.Items)
             bus.$emit('mark')
-          })
-
-          
-          
+          }) 
         }
       } 
     },
