@@ -30,7 +30,7 @@ router.get('/get_one_all/:id', function (ctx, next) {
     ctx.body = template({})
 });
 
-router.get('/:id/views', function (ctx, next) {
+router.get('/view/:id', function (ctx, next) {
    
         let template = swig.compileFile(path.resolve(templateRoot, "view.html"));
         ctx.body = template({})
