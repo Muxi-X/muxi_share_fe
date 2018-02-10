@@ -102,7 +102,7 @@ router.get('/new', function (ctx, next) {
 // });
 
 
-router.get('/:id/edit/', function (ctx, next) {
+router.get('/send/:id/', function (ctx, next) {
     let template = swig.compileFile(path.resolve(templateRoot, "send.html"));
     ctx.body = template({})
 });
