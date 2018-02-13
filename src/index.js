@@ -21,6 +21,7 @@ Vue.material.registerTheme('default', {
 		color: 'white',
 	  hue: 100
 	},
+	 
   // background: 'orange'
 })
 

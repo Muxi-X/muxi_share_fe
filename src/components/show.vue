@@ -54,7 +54,7 @@ export default {
   font-size: 24px;
 }
 .cmtextarea{
-  margin: 16px 56px;
+  margin: 16px 16px;
 }
 .submit_button{
   float: right;

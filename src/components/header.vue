@@ -1,12 +1,12 @@
 <template>
   <div class="phone-viewport">
-    <md-toolbar style="background-color:#2296f3">
+    <md-toolbar style="background-color:transparet" class="md-primary">
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">木犀分享</h2>
-      <md-button href="/" class="md-warn">首页</md-button>
-      <md-button   @click="login"  class="md-warn" >{{username}}</md-button>
+      <md-button href="/" >首页</md-button>
+      <md-button   @click="login"  >{{username}}</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav">
       <md-toolbar class="md-medium">
@@ -30,7 +30,7 @@
       </md-list>
     </md-sidenav>
     <div :class="$style.parallax">
-      <div :class="$style.background"></div>
+      <img :src="picture" :class="$style.background" >
     </div>
   </div>
 </template>
@@ -42,7 +42,17 @@ import haveToken from '../common/haveToken'
 export default {
   data() {
     return {
-      username:''
+      username:'',
+      picture:'',
+      srcs:[
+        "http://pic32.photophoto.cn/20140929/0008020236750834_b.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECgy1foexb1uwbhj30wi0goq6x.jpg",
+        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518522886724&di=49f8c6f82377cbf8ba4f933a5790b950&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D89d85c0443540923be646b3dfa31bb7c%2Fdc54564e9258d109b7b70b95db58ccbf6c814d44.jpg",
+        "http://pic2.ooopic.com/12/58/16/15bOOOPICae.jpg",
+        "http://imgsrc.baidu.com/imgad/pic/item/03087bf40ad162d9ee1ea9311adfa9ec8a13cd2f.jpg",
+        
+        
+      ]
     }
   },
   mounted(){
@@ -51,6 +61,10 @@ export default {
    }else{
      this.username = '登陆'
    } 
+   console.log(Math.random()*this.srcs.length)
+   let randomNum = parseInt(Math.random()*this.srcs.length)
+   this.picture =this.srcs[randomNum];
+  
   },
   methods: {
     login() {
@@ -59,8 +73,9 @@ export default {
           //应该跳转到个人中心
           window.location = '/'
         }else{
-          window.location = "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-         
+          // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
+          // window.location = "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+           window.location = "http://pass.muxixyz.com/?landing=localhost:3000/landing";
         }
        
  
@@ -85,18 +100,15 @@ export default {
 
 
 <style lang="scss" module>
+
 .parallax{
-  background-color: azure;
+  overflow:hidden;
   width: auto;
-  height: 270px;
+  height: 370px;
 }
 .background{
-  height: 100%;
-  width: 100%;
-  background-image: url("../assets/header_img.jpg");
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+ width: 100%;  
+ height: 100%;  
+
 }
 </style>

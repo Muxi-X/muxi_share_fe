@@ -8,7 +8,7 @@
           <md-input :class="$style.title_font" placeholder="分享主题" v-model="share.title"></md-input>
         </md-input-container>
       </div>
-      <div>
+      <div :class="$style.send_radio">
         <md-radio v-if='id===null||id===undefined' v-model="share.tags" v-for='(choice,index) in choices' :key="index" name="my-test-group1" :md-value="choice">{{choice}}</md-radio>
       </div>
        <div :class="$style.editor">
@@ -16,7 +16,7 @@
       <div :class="$style.markdown" v-html="compiledMarkdown"></div> 
     </div>
     </md-card>
-     <md-button   :class="$style.post" class="md-raised md-primary"  @click="post">Post</md-button>
+     <md-button   :class="$style.send_post" class="md-raised md-primary"  @click="post">Post</md-button>
     <foot></foot>
   </div>
 </template>
@@ -76,12 +76,12 @@ export default {
 </script>
 
 <style lang="scss" module>
+
 .sendcard {
   height: 700px;
-  width: 840px;
-  margin: 56px auto;
+  width: 100%;
+  margin: 5% auto;
 }
-
 .title_con {
   height: 100%;
   padding-bottom: 20px;
@@ -117,8 +117,13 @@ textarea {
   font-family: 'Monaco', courier, monospace;
   padding: 20px;
 }
-.post{
-   margin: -3% 46%;
+.send_radio{
+  border-bottom:1px solid #2296f3;
+  text-align: center;
+}
+.send_post{
+  //  
+  text-align: center
 }
 code {
   color: #f66;

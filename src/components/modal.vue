@@ -18,8 +18,8 @@ export default {
     methods: {
         login() {
             
-            window.location = "https://pass.muxixyz.com?landing=blog.muxixyz.com/landing"
-            // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
+            // window.location = "https://pass.muxixyz.com?landing=blog.muxixyz.com/landing"
+            window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         },
         cancel() {
             this.$emit('cancel')
