@@ -1,5 +1,5 @@
 <template  >
-  <div >
+  <div  >
     <a href="/send" v-if="getToken()">
       <div :class="$style.button_container ">
         <md-button class="md-fab md-fab-bottom-right" style="background-color:#2296f3">

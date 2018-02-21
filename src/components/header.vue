@@ -104,7 +104,7 @@ export default {
 .parallax{
   overflow:hidden;
   width: auto;
-  height: 370px;
+  height: 37.5vh;
 }
 .background{
  width: 100%;  

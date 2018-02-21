@@ -1,4 +1,4 @@
-<template>
+<template >
   <div>
     <he></he>
     <tab></tab>
