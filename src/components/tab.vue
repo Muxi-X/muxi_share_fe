@@ -2,7 +2,7 @@
   <div  >
     <a href="/send" v-if="getToken()">
       <div :class="$style.button_container ">
-        <md-button class="md-fab md-fab-bottom-right" style="background-color:#2296f3">
+        <md-button class="md-fab md-fab-bottom-right md-primary">
           <md-icon >add</md-icon>
         </md-button>
       </div>

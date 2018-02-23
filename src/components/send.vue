@@ -10,13 +10,17 @@
       </div>
       <div :class="$style.send_radio">
         <md-radio v-if='id===null||id===undefined' v-model="share.tags" v-for='(choice,index) in choices' :key="index" name="my-test-group1" :md-value="choice">{{choice}}</md-radio>
+         <md-button   :class="$style.send_post" class=""  @click="post">发布分享</md-button>
       </div>
+      
        <div :class="$style.editor">
        <textarea :value="share.share" @input="update"></textarea>
       <div :class="$style.markdown" v-html="compiledMarkdown"></div> 
     </div>
     </md-card>
-     <md-button   :class="$style.send_post" class="md-raised md-primary"  @click="post">Post</md-button>
+   
+    
+   
     <foot></foot>
   </div>
 </template>
@@ -122,8 +126,11 @@ textarea {
   text-align: center;
 }
 .send_post{
-  //  
-  text-align: center
+  color:#2296f3;
+  border: solid 1px #2296f3;
+  border-radius: 10%;
+  margin-left: 10%;
+  font-weight: 900;
 }
 code {
   color: #f66;

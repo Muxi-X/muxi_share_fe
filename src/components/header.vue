@@ -61,7 +61,6 @@ export default {
    }else{
      this.username = '登陆'
    } 
-   console.log(Math.random()*this.srcs.length)
    let randomNum = parseInt(Math.random()*this.srcs.length)
    this.picture =this.srcs[randomNum];
   

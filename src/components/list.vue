@@ -1,7 +1,7 @@
 <template >
-<div class="md-layout" >
+<div  >
  <!-- <div class="md-layout-item md-size-80">  -->
-  <div :class="$style.list_container"   >
+  <div :class="$style.list_container" >
     <div v-for = "item in items" :key="item.id">
 
       <div :class="$style.card_container"  >
@@ -41,12 +41,12 @@
     </div>
      <!-- <div v-if="!this.page_count">nothing</div> -->
       <div :class="$style.card_container" class="md-layout">
-        <div :class="$style.page_turn">
-          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last Page</md-button>
-          <md-button class="page_turn_num_button  md-mini"  v-show="this.page_num > 0" >{{page_num}}</md-button>
+        <div :class="$style.page_turn" class="md-layout-item md-size-80">
+          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last </md-button>
+          <md-button class="page_turn_num_button  md-mini" :class="$style.page_num_button"  v-show="this.page_num > 0" >{{page_num}}</md-button>
           <span :class="$style.slash" v-show="this.page_num < this.pages_count">/</span>
-          <md-button class=" pages_turn_count_button" @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
-          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="nextPage" v-show="this.page_num < this.pages_count">Next Page</md-button>
+          <md-button class=" pages_turn_count_button" :class="$style.page_num_button"  @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
+          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="nextPage" v-show="this.page_num < this.pages_count">Next </md-button>
           </div>
       </div>
   </div>
@@ -128,27 +128,86 @@ export default {
 <style lang="scss" module>
 
 /*不要写死 子组件撑开 */
+
 .list_container{
-  
+ 
   height: 100%;
   margin-left: auto;
   margin-right:auto;
-  
-}
-.card_container{
-  // width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top:5px;
-  margin-bottom: 5%;
-  
+  overflow: hidden;
+ 
 }
 .index_button{
  color:#2296f3;
  border: solid 1px #2296f3;
  border-radius: 10%;
+ margin:2vh 2vw;
+ min-height: 2vh!important;
+}
+.page_num_button{
+  margin:2vh 2vw;
+ min-height: 2vh!important;
+}
+@media screen and (min-width:1200px) {
+  .list_container{
+  width:50vw;
+  }
+  .page_turn{
+  margin-left:10vw;
+}
+}
+@media screen and (min-width: 960px) and (max-width: 1199px){
+  .list_container{
+  width:60vw;
+  }
+ .page_turn{
+  margin-left:8vw;
+}
 
 }
+@media screen and (min-width: 768px) and (max-width: 959px){
+.list_container{
+  width:70vw;
+  }
+   .page_turn{
+  margin-left:6vw;
+}
+
+}
+@media only screen and (min-width: 480px) and (max-width: 767px){
+  .list_container{
+  width:80vw;
+  }
+   .page_turn{
+  margin-left:4vw;
+}
+
+
+
+
+}
+@media only screen and (max-width: 479px) {
+   .list_container{
+  width:90vw;
+  }
+   .page_turn{
+  margin-left:2vw;
+}
+
+
+
+
+}
+
+.card_container{
+  // width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:5px;
+  margin-bottom: 2%;
+  
+}
+
 .content_container{
   
   // width: 630px;
@@ -174,9 +233,7 @@ export default {
 .clear_float{
   overflow: hidden;
 }
-.page_turn{
-  // margin-left:5%;
-}
+
 .slash{
   line-height: 3;
 }
