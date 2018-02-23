@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <he></he>
+    <!-- <he></he> -->
     <md-card :class="$style.sendcard">
       <div method="post">
         <md-input-container md-inline :class="$style.title_con">

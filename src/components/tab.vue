@@ -85,10 +85,9 @@ export default {
 </script>
 <style lang="scss" module>
 .button_container{
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  top: 334px;
-  right: 140px;
+  z-index: 999;
+  position: fixed;
+  top: 50vh;
+  right: 20vw;
 }
 </style>
