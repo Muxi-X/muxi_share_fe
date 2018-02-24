@@ -19,7 +19,7 @@
             <div class="md-subhead">{{item.date}}</div>
           </md-card-header>
           <div :class="$style.content_container">
-            <md-card-content v-html="item.share">
+            <md-card-content v-html="item.share" :class="$style.share_content">
             </md-card-content>
           </div>
           <md-divider></md-divider>
@@ -128,7 +128,9 @@ export default {
 <style lang="scss" module>
 
 /*不要写死 子组件撑开 */
-
+.share_content>p>a {
+    color:red!important;
+}
 .list_container{
  
   height: 100%;
@@ -215,6 +217,7 @@ export default {
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 5vw;
+
 }
 .ic_container, .comment_container, .readmore_container, .back_container, .forward_container{
   display: inline-block;
