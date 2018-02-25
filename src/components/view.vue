@@ -99,6 +99,9 @@ export default {
         window.location='/';
       })
     }
+  },
+  destroyed(){
+    Cookie.clearCookie('history')
   }
 }
 </script>

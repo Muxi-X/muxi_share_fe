@@ -31,7 +31,7 @@
             <md-chip>{{item.tag}}</md-chip>
             <div :class="$style.readmore_container">
               <md-card-actions>
-                <md-button :class="$style.index_button" :href="'/view/' + item.id" >READ MORE</md-button>
+                <md-button :class="$style.index_button" @click="intoView(item.id)" >READ MORE</md-button>
               </md-card-actions>
             </div>
           </div>
@@ -58,7 +58,7 @@
 import { bus } from '../bus.js'
 import marked from '../common/marked'
 import API from '../common/service'
-
+import Cookie from '../common/cookie'
 
 export default {
     data() {
@@ -69,6 +69,9 @@ export default {
       }
     },
     mounted() {
+      let page_num = Cookie.getCookie('history').split('?page =')[1];
+      if(page_num!==null||page_num!==undefined)
+      this.page_num = page_num;
       API.choosePage(this.page_num)
       .then(value => {
         this.items = value.shares
@@ -81,9 +84,14 @@ export default {
     created() {
       bus.$on('getItems',this.fetchData)
       bus.$on('mark',this.compiledMarkdown)
+     // bus.$on('turnBackToBefore',this.turnBackChangePage);
     },
     methods: {
       intoView(id){
+        let history = window.location.href + '?page = ' + this.page_num;
+       // console.log('history:'+history)
+        Cookie.setCookie('history',history);
+       // console.log(Cookie.getCookie('history'))
         window.location = '/view/' + id;
       },
 	    fetchData(Items) {
@@ -97,19 +105,31 @@ export default {
         this.compiledMarkdown()
         this.pages_count = value.pages_count //总页数数
         this.page_num = value.page //当前页数
+        //localStorage.setItem('history',this.page_num);
+       // window.history.pushState(null, null,this.page_num);
       })
       },
+      // turnBackChangePage(obj){
+      //   console.log('INTOPAGE')
+      //   this.page_num = obj.page_num;
+      //   window.location = obj.url;
+      // },
       lastPage(){
         if(this.page_num!==1){
           this.page_num--
           this.pageChange()
+          
         }    
+        
+        
       },
       nextPage(){
         if(this.page_num!==this.pages_count){
-             this.page_num++
-             this.pageChange()
+             this.page_num++;
+             this.pageChange();
+             window.scrollTo(0,0);
         }
+        
       },
       finalPage(){
         this.page_num=this.pages_count
@@ -143,7 +163,8 @@ export default {
  color:#2296f3;
  border: solid 1px #2296f3;
  border-radius: 10%;
- margin:2vh 2vw;
+ 
+ margin:2vh 0;
  min-height: 2vh!important;
 }
 .page_num_button{

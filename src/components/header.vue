@@ -5,7 +5,7 @@
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title" style="flex: 1">木犀分享</h2>
-      <md-button href="/" >首页</md-button>
+      <md-button @click="turnBackFromView"  v-if="intoView">返回</md-button>
       <md-button   @click="login"  >{{username}}</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav">
@@ -37,11 +37,14 @@
 
 
 <script>
+import { bus } from '../bus.js'
 import Cookie from '../common/cookie.js'
 import haveToken from '../common/haveToken'
 export default {
   data() {
     return {
+      
+      intoView : false,
       username:'',
       picture:'',
       srcs:[
@@ -56,6 +59,11 @@ export default {
     }
   },
   mounted(){
+    let pathArray = window.location.pathname.split('/');
+    let index = pathArray.length - 2;
+    if(pathArray[index]==='view'){
+      this.intoView = true;
+    }
    if(haveToken()){
      this.username = Cookie.getCookie('username')
    }else{
@@ -66,6 +74,7 @@ export default {
   
   },
   methods: {
+
     login() {
         if(haveToken()){
           
@@ -87,6 +96,17 @@ export default {
       Cookie.clearCookie('uid');
       Cookie.clearCookie('username');
       window.location = '/'
+    },
+    turnBackFromView(){
+      
+      let location = Cookie.getCookie('history');
+      
+      let url = location.split('?page =')[0];
+     // console.log('url'+url)
+     
+      window.location.href = url;
+      
+   
     },
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();

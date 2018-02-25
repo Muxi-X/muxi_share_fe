@@ -8,14 +8,14 @@
       </div>
     </a>
     <md-tabs md-centered  @change="change"  >
-      <md-tab md-label="NEW" md-icon="fiber_new"></md-tab>
-      <md-tab md-label="HOT" md-icon="whatshot"></md-tab>
-      <md-tab md-label="FRONTEND" md-icon="important_devices"></md-tab>
-      <md-tab md-label="BACKEND" md-icon="build"></md-tab>
-      <md-tab md-label="ANDROID" md-icon="android"></md-tab>
-      <md-tab md-label="DESIGN" md-icon="photo"></md-tab>
-      <md-tab md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
-      <md-tab v-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
+      <md-tab id="new" md-label="NEW" md-icon="fiber_new" ></md-tab>
+      <md-tab id = 'hot' md-label="HOT" md-icon="whatshot"></md-tab>
+      <md-tab id = 'frontend' md-label="FRONTEND" md-icon="important_devices"></md-tab>
+      <md-tab id ='backend' md-label="BACKEND" md-icon="build"></md-tab>
+      <md-tab id = 'android' md-label="ANDROID" md-icon="android"></md-tab>
+      <md-tab id = 'design' md-label="DESIGN" md-icon="photo"></md-tab>
+      <md-tab id= 'product' md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
+      <md-tab id= 'mine' v-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
     </md-tabs>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
       Items: [],
       page_num: 1,
       mine:false,
-
+      index:1
     }
   },
 
@@ -72,6 +72,14 @@ export default {
       } 
     },
     mounted(){
+      let url =Cookie.getCookie('history').split('?page =')[0].split('/');
+      let sort = url[url.length-1];
+      if(sort!==null&&sort!==undefined){
+        let sort1 = '/'+sort;
+        let index =  route.indexOf(sort1);
+        this.change(index);
+      }
+      
       let uid = Cookie.getCookie('uid');
       if(uid!==undefined&&uid!==null&&uid!==''){
         this.mine = true;

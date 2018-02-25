@@ -62,7 +62,10 @@ export default {
           this.pagechange();
         }
       }
-    }
+    },
+   
+      
+    
   }
 </script>
 
