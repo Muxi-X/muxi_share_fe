@@ -24,11 +24,19 @@
 
 
 <script>
-import { bus } from '../bus.js'
-import Cookie from '../common/cookie.js'
-import API from '../common/service'
-import haveToken from '../common/haveToken'
-var route = ['/new',"/hot","/frontend","/backend","/android","/design","/product"]
+import { bus } from "../bus.js";
+import Cookie from "../common/cookie.js";
+import API from "../common/service";
+import haveToken from "../common/haveToken";
+var route = [
+  "/new",
+  "/hot",
+  "/frontend",
+  "/backend",
+  "/android",
+  "/design",
+  "/product"
+];
 export default {
   data() {
     return {
@@ -36,73 +44,71 @@ export default {
       url: "",
       Items: [],
       page_num: 1,
-      mine:false,
-      index:1,
+      mine: false,
+      index: 1,
       currentPathName: "",
       mounted: false
-    }
+    };
   },
 
-    methods: {
-      getToken(){
-        return haveToken();
-      },
-      change(e) {
-        if (!this.mounted) {
-          return;
-        }
-
-        if(route.indexOf(window.location.pathname) > -1||window.location.pathname==='/'){
-
-          window.history.pushState(null, null,route[e]);
-          this.api = window.location.pathname.split('/')[1];
-
-          if (this.api == "new" ){
-            this.url = ""
-          }
-          else if(this.api == 'mine'){
-            this.url = 'get_one_all/'+Cookie.getCookie('uid');
-          }
-          else {
-            this.url = "?sort=" + this.api
-
-          }
-
-          API.getSortedPage(this.url).then(value => {
-            this.Items = value.shares
-          }).then(()=>{
-            bus.$emit('getItems',this.Items)
-            bus.$emit('mark')
-          })
-        }
-      }
+  methods: {
+    getToken() {
+      return haveToken();
     },
-    mounted(){
-      // let url =Cookie.getCookie('history').split('?page =')[0].split('/');
-      // let sort = url[url.length-1];
-      // if(sort!==null&&sort!==undefined){
-      //   let sort1 = '/'+sort;
-      //   let index =  route.indexOf(sort1);
-      //   this.change(index);
-      // }
-
-
-      // 初始化currentPathName
-      this.currentPathName = window.location.pathname;
-
-      let uid = Cookie.getCookie('uid');
-      if(uid!==undefined&&uid!==null&&uid!==''){
-        this.mine = true;
-        route.push('/mine')
+    change(e) {
+      if (!this.mounted) {
+        return;
       }
-      this.mounted = true;
+
+      if (
+        route.indexOf(window.location.pathname) > -1 ||
+        window.location.pathname === "/"
+      ) {
+        window.history.pushState(null, null, route[e]);
+        this.api = window.location.pathname.split("/")[1];
+
+        if (this.api == "new") {
+          this.url = "";
+        } else if (this.api == "mine") {
+          this.url = "get_one_all/" + Cookie.getCookie("uid");
+        } else {
+          this.url = "?sort=" + this.api;
+        }
+
+        API.getSortedPage(this.url)
+          .then(value => {
+            this.Items = value.shares;
+          })
+          .then(() => {
+            bus.$emit("getItems", this.Items);
+            bus.$emit("mark");
+          });
+      }
     }
+  },
+  mounted() {
+    // let url =Cookie.getCookie('history').split('?page =')[0].split('/');
+    // let sort = url[url.length-1];
+    // if(sort!==null&&sort!==undefined){
+    //   let sort1 = '/'+sort;
+    //   let index =  route.indexOf(sort1);
+    //   this.change(index);
+    // }
 
+    // 初始化currentPathName
+    this.currentPathName = window.location.pathname;
 
+    let uid = Cookie.getCookie("uid");
+    if (uid !== undefined && uid !== null && uid !== "") {
+      this.mine = true;
+      route.push("/mine");
+    }
+    this.mounted = true;
   }
+};
 </script>
 <style lang="scss" module>
-.button_container{
+.button_container {
   z-index: 999;
   position: fixed;
   top: 50vh;

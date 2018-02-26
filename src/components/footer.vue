@@ -11,24 +11,22 @@
 <script>
 </script>
 <style lang="scss" module>
-.footer_container{
-  
+.footer_container {
   width: 100%;
   height: 100px;
   background-color: #2296f3;
-  
 }
-.text_center{
+.text_center {
   text-align: -webkit-center;
 }
-.muxi_logo{
+.muxi_logo {
   font-size: 16px;
   color: white;
   display: inline-block;
   vertical-align: middle;
   line-height: 100px;
 }
-.muxi_web{
+.muxi_web {
   color: white;
   width: 80px;
   display: inline-block;

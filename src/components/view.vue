@@ -47,84 +47,83 @@
   </div>
 </template>
 <script>
-import header from './header.vue'
-import footer from './footer.vue'
-import show from './show.vue'
-import Cookie from '../common/cookie'
-import marked from '../common/marked'
-import API from '../common/service'
+import header from "./header.vue";
+import footer from "./footer.vue";
+import show from "./show.vue";
+import Cookie from "../common/cookie";
+import marked from "../common/marked";
+import API from "../common/service";
 
 export default {
-    data() {
-      return {
-        id: 0,
-        share : {
-          type: Object
-        },
-        items: [],
-        isAuthor:false
-      }
-    },
-    components: {
-      "he": header,
-      "foot": footer,
-      "show": show
-    },
-    computed: {
-      compiledMarkdown: function() {
-        return marked(this.share.share||'', { sanitize: false })
-      }
-    },
-    mounted() {
-      var api = window.location.pathname;
-      this.id = api.split('/')[2]; //把 id props 给子组件
-      API.getView(this.id).then(value => {
-        this.share = value.shares
-        this.items = value.comments
-        if(this.share.username ===  Cookie.getCookie('username')){
-          this.isAuthor = true;
-        }
-      })
-    },
-    methods: {
-      fetchComments() {
-        API.getView(this.id).then(res => {
-          this.items = res.comments
-        })
+  data() {
+    return {
+      id: 0,
+      share: {
+        type: Object
       },
-      delShare(){
-        let token = Cookie.getCookie('token');
-        API.deleteShare(this.id,token).then(res=>{
-        if(res!==null&&res!==undefined)
-        window.location='/';
-      })
+      items: [],
+      isAuthor: false
+    };
+  },
+  components: {
+    he: header,
+    foot: footer,
+    show: show
+  },
+  computed: {
+    compiledMarkdown: function() {
+      return marked(this.share.share || "", { sanitize: false });
     }
   },
-  destroyed(){
-    Cookie.clearCookie('history')
+  mounted() {
+    var api = window.location.pathname;
+    this.id = api.split("/")[2]; //把 id props 给子组件
+    API.getView(this.id).then(value => {
+      this.share = value.shares;
+      this.items = value.comments;
+      if (this.share.username === Cookie.getCookie("username")) {
+        this.isAuthor = true;
+      }
+    });
+  },
+  methods: {
+    fetchComments() {
+      API.getView(this.id).then(res => {
+        this.items = res.comments;
+      });
+    },
+    delShare() {
+      let token = Cookie.getCookie("token");
+      API.deleteShare(this.id, token).then(res => {
+        if (res !== null && res !== undefined) window.location = "/";
+      });
+    }
+  },
+  destroyed() {
+    Cookie.clearCookie("history");
   }
-}
+};
 </script>
 
 
 <style lang="scss" module>
-.btn{
+.btn {
   float: right;
-  color:#2296f3;
+  color: #2296f3;
   border: solid 1px #2296f3;
   border-radius: 10%;
 }
-.card_container{
+.card_container {
   width: 840px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 56px;
   margin-bottom: 56px;
 }
-.sharetext{
-  margin: 36px ;
+.sharetext {
+  margin: 36px;
 }
-.comment_title{
+.comment_title {
   margin: 36px 16px;
   font-size: 24px;
 }

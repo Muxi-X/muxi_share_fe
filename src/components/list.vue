@@ -55,211 +55,189 @@
 
 
 <script>
-import { bus } from '../bus.js'
-import marked from '../common/marked'
-import API from '../common/service'
-import Cookie from '../common/cookie'
+import { bus } from "../bus.js";
+import marked from "../common/marked";
+import API from "../common/service";
+import Cookie from "../common/cookie";
 
 export default {
-    data() {
-      return {
-        items:[],
-        page_num: 1,
-        pages_count:true
-      }
+  data() {
+    return {
+      items: [],
+      page_num: 1,
+      pages_count: true
+    };
+  },
+  mounted() {
+    let page_num = Cookie.getCookie("history").split("?page =")[1];
+    if (page_num !== null || page_num !== undefined) this.page_num = page_num;
+    API.choosePage(this.page_num).then(value => {
+      this.items = value.shares;
+      this.compiledMarkdown();
+      this.pages_count = value.pages_count; //总页数数
+      this.page_num = value.page; //当前页数
+    });
+    //this.compiledMarkdown()
+  },
+  created() {
+    bus.$on("getItems", this.fetchData);
+    bus.$on("mark", this.compiledMarkdown);
+    // bus.$on('turnBackToBefore',this.turnBackChangePage);
+  },
+  methods: {
+    intoView(id) {
+      let history = window.location.href + "?page = " + this.page_num;
+      // console.log('history:'+history)
+      Cookie.setCookie("history", history);
+      // console.log(Cookie.getCookie('history'))
+      window.location = "/view/" + id;
     },
-    mounted() {
-      let page_num = Cookie.getCookie('history').split('?page =')[1];
-      if(page_num!==null||page_num!==undefined)
-      this.page_num = page_num;
-      API.choosePage(this.page_num)
-      .then(value => {
-        this.items = value.shares
-        this.compiledMarkdown()
-        this.pages_count = value.pages_count //总页数数
-        this.page_num = value.page //当前页数
-      })
-      //this.compiledMarkdown()
+    fetchData(Items) {
+      this.items = Items;
     },
-    created() {
-      bus.$on('getItems',this.fetchData)
-      bus.$on('mark',this.compiledMarkdown)
-     // bus.$on('turnBackToBefore',this.turnBackChangePage);
-    },
-    methods: {
-      intoView(id){
-        let history = window.location.href + '?page = ' + this.page_num;
-       // console.log('history:'+history)
-        Cookie.setCookie('history',history);
-       // console.log(Cookie.getCookie('history'))
-        window.location = '/view/' + id;
-      },
-	    fetchData(Items) {
-        this.items = Items
-        
-      },
-      pageChange(){
-      API.choosePage(this.page_num)
-      .then(value => {
-        this.items = value.shares
-        this.compiledMarkdown()
-        this.pages_count = value.pages_count //总页数数
-        this.page_num = value.page //当前页数
+    pageChange() {
+      API.choosePage(this.page_num).then(value => {
+        this.items = value.shares;
+        this.compiledMarkdown();
+        this.pages_count = value.pages_count; //总页数数
+        this.page_num = value.page; //当前页数
         //localStorage.setItem('history',this.page_num);
-       // window.history.pushState(null, null,this.page_num);
-      })
-      },
-      // turnBackChangePage(obj){
-      //   console.log('INTOPAGE')
-      //   this.page_num = obj.page_num;
-      //   window.location = obj.url;
-      // },
-      lastPage(){
-        if(this.page_num!==1){
-          this.page_num--
-          this.pageChange()
-          
-        }    
-        
-        
-      },
-      nextPage(){
-        if(this.page_num!==this.pages_count){
-             this.page_num++;
-             this.pageChange();
-             window.scrollTo(0,0);
-        }
-        
-      },
-      finalPage(){
-        this.page_num=this.pages_count
-        this.pageChange()
-      },
-      compiledMarkdown() {
-       this.items.forEach(function(value){
-          value.share = marked(value.share||'', {sanitize: true })
-       })
+        // window.history.pushState(null, null,this.page_num);
+      });
+    },
+    // turnBackChangePage(obj){
+    //   console.log('INTOPAGE')
+    //   this.page_num = obj.page_num;
+    //   window.location = obj.url;
+    // },
+    lastPage() {
+      if (this.page_num !== 1) {
+        this.page_num--;
+        this.pageChange();
       }
+    },
+    nextPage() {
+      if (this.page_num !== this.pages_count) {
+        this.page_num++;
+        this.pageChange();
+        window.scrollTo(0, 0);
+      }
+    },
+    finalPage() {
+      this.page_num = this.pages_count;
+      this.pageChange();
+    },
+    compiledMarkdown() {
+      this.items.forEach(function(value) {
+        value.share = marked(value.share || "", { sanitize: true });
+      });
     }
-}
+  }
+};
 </script>
 
 
 <style lang="scss" module>
-
 /*不要写死 子组件撑开 */
-.share_content>p>a {
-    color:red!important;
+.share_content > p > a {
+  color: red !important;
 }
-.list_container{
- 
+.list_container {
   height: 100%;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   overflow: hidden;
- 
 }
-.index_button{
- color:#2296f3;
- border: solid 1px #2296f3;
- border-radius: 10%;
- 
- margin:2vh 0;
- min-height: 2vh!important;
+.index_button {
+  color: #2296f3;
+  border: solid 1px #2296f3;
+  border-radius: 10%;
+
+  margin: 2vh 0;
+  min-height: 2vh !important;
 }
-.page_num_button{
-  margin:2vh 2vw;
- min-height: 2vh!important;
+.page_num_button {
+  margin: 2vh 2vw;
+  min-height: 2vh !important;
 }
-@media screen and (min-width:1200px) {
-  .list_container{
-  width:50vw;
+@media screen and (min-width: 1200px) {
+  .list_container {
+    width: 50vw;
   }
-  .page_turn{
-  margin-left:10vw;
-}
-}
-@media screen and (min-width: 960px) and (max-width: 1199px){
-  .list_container{
-  width:60vw;
+  .page_turn {
+    margin-left: 10vw;
   }
- .page_turn{
-  margin-left:8vw;
 }
-
-}
-@media screen and (min-width: 768px) and (max-width: 959px){
-.list_container{
-  width:70vw;
+@media screen and (min-width: 960px) and (max-width: 1199px) {
+  .list_container {
+    width: 60vw;
   }
-   .page_turn{
-  margin-left:6vw;
-}
-
-}
-@media only screen and (min-width: 480px) and (max-width: 767px){
-  .list_container{
-  width:80vw;
+  .page_turn {
+    margin-left: 8vw;
   }
-   .page_turn{
-  margin-left:4vw;
 }
-
-
-
-
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .list_container {
+    width: 70vw;
+  }
+  .page_turn {
+    margin-left: 6vw;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .list_container {
+    width: 80vw;
+  }
+  .page_turn {
+    margin-left: 4vw;
+  }
 }
 @media only screen and (max-width: 479px) {
-   .list_container{
-  width:90vw;
+  .list_container {
+    width: 90vw;
   }
-   .page_turn{
-  margin-left:2vw;
+  .page_turn {
+    margin-left: 2vw;
+  }
 }
 
-
-
-
-}
-
-.card_container{
+.card_container {
   // width: 50%;
   margin-left: auto;
   margin-right: auto;
-  margin-top:5px;
+  margin-top: 5px;
   margin-bottom: 2%;
-  
 }
 
-.content_container{
-  
+.content_container {
   // width: 630px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin-left: 5vw;
-
 }
-.ic_container, .comment_container, .readmore_container, .back_container, .forward_container{
+.ic_container,
+.comment_container,
+.readmore_container,
+.back_container,
+.forward_container {
   display: inline-block;
 }
-.ic_container{
-  
+.ic_container {
   margin-left: 32px;
   line-height: 52px;
 }
-.comment_container{
+.comment_container {
   margin-right: 24px;
 }
-.readmore_container{
+.readmore_container {
   float: right;
 }
-.clear_float{
+.clear_float {
   overflow: hidden;
 }
 
-.slash{
+.slash {
   line-height: 3;
 }
-
 </style>

@@ -16,50 +16,49 @@
 
 
 <script>
-import haveToken from '../common/haveToken'
-import Cookie from '../common/cookie'
-import API from '../common/service'
+import haveToken from "../common/haveToken";
+import Cookie from "../common/cookie";
+import API from "../common/service";
 export default {
   data() {
-    return{
-      text:""
-    }
+    return {
+      text: ""
+    };
   },
-  props:['id'],
+  props: ["id"],
   methods: {
-    submit_method(e){
+    submit_method(e) {
       e.stopPropagation();
-      
-      if(haveToken()){
-        let body ={comment: this.text};
-        let token = Cookie.getCookie('token');
-        if(this.text) {
-          API.sendComment(this.id,body,token).then(res => {
-            this.text=""
+
+      if (haveToken()) {
+        let body = { comment: this.text };
+        let token = Cookie.getCookie("token");
+        if (this.text) {
+          API.sendComment(this.id, body, token).then(res => {
+            this.text = "";
             // this.$parent.fetchComments()
-            this.$emit('newComment')
-          })
+            this.$emit("newComment");
+          });
         }
-      }else{
-        alert('请先登陆！')
+      } else {
+        alert("请先登陆！");
       }
     }
   }
-}
-
+};
 </script>
 <style lang="scss" module>
-.comment_title{
+.comment_title {
   margin: 36px 16px;
   font-size: 24px;
 }
-.cmtextarea{
+.cmtextarea {
   margin: 16px 16px;
 }
-.submit_button{
+.submit_button {
   float: right;
   margin-right: 48px;
-  color:#2296f3;
+  color: #2296f3;
   border: solid 1px #2296f3;
   border-radius: 10%;
 }

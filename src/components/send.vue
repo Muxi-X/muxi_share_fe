@@ -27,60 +27,60 @@
 
 
  <script>
+import header from "./header.vue";
+import footer from "./footer.vue";
+import Cookie from "../common/cookie.js";
+import marked from "../common/marked";
 
-import header from './header.vue'
-import footer from './footer.vue'
-import Cookie from '../common/cookie.js'
-import marked from '../common/marked'
-
-var _ = require('lodash');
-
+var _ = require("lodash");
 
 export default {
   data() {
     return {
-      choices:['frontend','backend','android','design','product'],
-      share : this.shareContent,
+      choices: ["frontend", "backend", "android", "design", "product"],
+      share: this.shareContent,
       id: this.id
-    }
+    };
   },
   components: {
-    "he": header,
-    "foot": footer,
+    he: header,
+    foot: footer
   },
-  props : {
-    fetchFun:Function,
-    shareContent:Object,
-    id:[Number,null]
+  props: {
+    fetchFun: Function,
+    shareContent: Object,
+    id: [Number, null]
   },
   computed: {
     compiledMarkdown: function() {
-      return marked(this.share.share||'', { sanitize: false })
+      return marked(this.share.share || "", { sanitize: false });
     }
   },
   methods: {
-    update:
-        _.debounce(function (e) {
-        this.share.share = e.target.value
-      }, 300),
-    post:function(){
-      if(this.share.title===''||this.share.tags===''||this.share.share===''){
-        alert('请将信息填完整')
-      }else{
-        let token = Cookie.getCookie('token');
-        this.fetchFun(this.share,token,this.id)  
-        this.changeWeb(); 
-      }    
+    update: _.debounce(function(e) {
+      this.share.share = e.target.value;
+    }, 300),
+    post: function() {
+      if (
+        this.share.title === "" ||
+        this.share.tags === "" ||
+        this.share.share === ""
+      ) {
+        alert("请将信息填完整");
+      } else {
+        let token = Cookie.getCookie("token");
+        this.fetchFun(this.share, token, this.id);
+        this.changeWeb();
+      }
     },
-    changeWeb:function(){ 
-        window.location =  '/'     
+    changeWeb: function() {
+      window.location = "/";
     }
-  },
-}
+  }
+};
 </script>
 
 <style lang="scss" module>
-
 .sendcard {
   height: 700px;
   width: 100%;
@@ -95,14 +95,15 @@ export default {
   /*font-size: px;*/
   text-align: center;
 }
-  .editor {
+.editor {
   margin: 0;
   height: 100%;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Helvetica Neue", Arial, sans-serif;
   color: #333;
 }
 
-textarea, .markdown{
+textarea,
+.markdown {
   display: inline-block;
   width: 49%;
   height: 100%;
@@ -118,15 +119,15 @@ textarea {
   outline: none;
   background-color: #f6f6f6;
   font-size: 14px;
-  font-family: 'Monaco', courier, monospace;
+  font-family: "Monaco", courier, monospace;
   padding: 20px;
 }
-.send_radio{
-  border-bottom:1px solid #2296f3;
+.send_radio {
+  border-bottom: 1px solid #2296f3;
   text-align: center;
 }
-.send_post{
-  color:#2296f3;
+.send_post {
+  color: #2296f3;
   border: solid 1px #2296f3;
   border-radius: 10%;
   margin-left: 10%;
