@@ -8,7 +8,7 @@ Vue.use(VueMaterial);
 Vue.material.registerTheme("default", {
   primary: {
     color: "#2296f3",
-    hue: 900
+    hue: 500
   },
   accent: {
     color: "white",

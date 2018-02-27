@@ -1,6 +1,6 @@
 <template>
   <div class="phone-viewport">
-    <md-toolbar style="background-color:transparet" class="md-primary">
+    <md-toolbar style="background-color:#2296f3" >
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
@@ -47,11 +47,25 @@ export default {
       username: "",
       picture: "",
       srcs: [
-        "http://pic32.photophoto.cn/20140929/0008020236750834_b.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzo2ir66j31hc0u0aj3.jpg",
         "https://wx1.sinaimg.cn/mw690/006P0MECgy1foexb1uwbhj30wi0goq6x.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1518522886724&di=49f8c6f82377cbf8ba4f933a5790b950&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimage%2Fc0%253Dshijue1%252C0%252C0%252C294%252C40%2Fsign%3D89d85c0443540923be646b3dfa31bb7c%2Fdc54564e9258d109b7b70b95db58ccbf6c814d44.jpg",
-        "http://pic2.ooopic.com/12/58/16/15bOOOPICae.jpg",
-        "http://imgsrc.baidu.com/imgad/pic/item/03087bf40ad162d9ee1ea9311adfa9ec8a13cd2f.jpg"
+        "https://wx4.sinaimg.cn/mw690/006P0MECly1fouzpo0ohzj31hc0u047k.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzo30kc1j31hc0u047e.jpg",
+        "https://wx4.sinaimg.cn/mw690/006P0MECly1fouzowxz92j31hc0u07dc.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzowv8n0j31hc0u0jzr.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzo2yl0oj31hc0u077y.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzpnbczrj31hc0u07df.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzo38uxej31hc0u0gu8.jpg",
+        "https://wx4.sinaimg.cn/mw690/006P0MECly1fouzo38labj31hc0u010z.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzomlqwvj31hc0u011v.jpg",
+        "https://wx4.sinaimg.cn/mw690/006P0MECly1fouzomp40lj31hc0u011e.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzon38nbj31hc0u0qbg.jpg",
+        "https://wx2.sinaimg.cn/mw690/006P0MECly1fouzon3qjtj31hc0u047n.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzon3srpj31hc0u0aj6.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzon3oisj31hc0u0n61.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzon3qmfj31hc0u047n.jpg",
+        "https://wx3.sinaimg.cn/mw690/006P0MECly1fouzon0f7uj31hc0u0dm7.jpg",
+        "https://wx1.sinaimg.cn/mw690/006P0MECly1fouzon3z3yj31hc0u0k0a.jpg"
       ]
     };
   },
@@ -108,8 +122,14 @@ export default {
 <style lang="scss" module>
 .parallax {
   overflow: hidden;
-  width: auto;
+  width: 100%;
   height: 37.5vh;
+}
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 .background {
   width: 100%;

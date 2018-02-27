@@ -7,7 +7,7 @@
         </md-button>
       </div>
     </a>
-    <md-tabs md-centered  @change="change"  >
+    <md-tabs md-centered  @change="change" class="md-primary" >
       <md-tab v-if="this.currentPathName === '/new'" md-active  md-label="NEW" md-icon="fiber_new"  ></md-tab>
       <md-tab v-else md-label="NEW" md-icon="fiber_new"></md-tab>
 
