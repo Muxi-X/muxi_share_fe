@@ -98,10 +98,10 @@ export default {
         if (res !== null && res !== undefined) window.location = "/";
       });
     }
-  },
-  destroyed() {
-    Cookie.clearCookie("history");
   }
+  // destroyed() {
+  //   Cookie.clearCookie("history");
+  // }
 };
 </script>
 

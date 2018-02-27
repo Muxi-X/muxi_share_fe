@@ -69,15 +69,17 @@ export default {
     };
   },
   mounted() {
-    let page_num = Cookie.getCookie("history").split("?page =")[1];
-    if (page_num !== null || page_num !== undefined) this.page_num = page_num;
+    // let page_num = Cookie.getCookie("history").split("?page =")[1];
+
+    // if (page_num !== null && page_num !== undefined) this.page_num = page_num;
+    // console.log('outpage_num:'+this.page_num)
     API.choosePage(this.page_num).then(value => {
       this.items = value.shares;
       this.compiledMarkdown();
       this.pages_count = value.pages_count; //总页数数
+      // console.log('mvalue.page:'+value.page)
       this.page_num = value.page; //当前页数
     });
-    //this.compiledMarkdown()
   },
   created() {
     bus.$on("getItems", this.fetchData);
@@ -87,9 +89,9 @@ export default {
   methods: {
     intoView(id) {
       let history = window.location.href + "?page = " + this.page_num;
-      // console.log('history:'+history)
+
       Cookie.setCookie("history", history);
-      // console.log(Cookie.getCookie('history'))
+
       window.location = "/view/" + id;
     },
     fetchData(Items) {
@@ -101,15 +103,9 @@ export default {
         this.compiledMarkdown();
         this.pages_count = value.pages_count; //总页数数
         this.page_num = value.page; //当前页数
-        //localStorage.setItem('history',this.page_num);
-        // window.history.pushState(null, null,this.page_num);
       });
     },
-    // turnBackChangePage(obj){
-    //   console.log('INTOPAGE')
-    //   this.page_num = obj.page_num;
-    //   window.location = obj.url;
-    // },
+
     lastPage() {
       if (this.page_num !== 1) {
         this.page_num--;
@@ -132,6 +128,9 @@ export default {
         value.share = marked(value.share || "", { sanitize: true });
       });
     }
+  },
+  beforeDestory() {
+    Cookie.clearCookie("history");
   }
 };
 </script>

@@ -8,15 +8,30 @@
       </div>
     </a>
     <md-tabs md-centered  @change="change"  >
-      <md-tab id="new" md-label="NEW" md-icon="fiber_new" ></md-tab>
-      <md-tab id = 'hot' md-label="HOT" md-icon="whatshot"></md-tab>
-      <md-tab id = 'frontend' md-label="FRONTEND" md-icon="important_devices"></md-tab>
+      <md-tab v-if="this.currentPathName === '/new'" md-active  md-label="NEW" md-icon="fiber_new"  ></md-tab>
+      <md-tab v-else md-label="NEW" md-icon="fiber_new"></md-tab>
+
+      <md-tab v-if="this.currentPathName === '/hot'" md-active  md-label="HOT" md-icon="whatshot"  ></md-tab>
+      <md-tab v-else md-label="HOT" md-icon="whatshot"></md-tab>
+
+      <md-tab v-if="this.currentPathName === '/frontend'" md-active  md-label="FRONTEND" md-icon="important_devices"  ></md-tab>
+      <md-tab v-else md-label="FRONTEND" md-icon="important_devices"></md-tab>
+
       <md-tab v-if="this.currentPathName === '/backend'" md-active md-label="BACKEND" md-icon="build"></md-tab>
       <md-tab v-else md-label="BACKEND" md-icon="build"></md-tab>
-      <md-tab id = 'android' md-label="ANDROID" md-icon="android"></md-tab>
-      <md-tab id = 'design' md-label="DESIGN" md-icon="photo"></md-tab>
-      <md-tab id= 'product' md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
-      <md-tab id= 'mine' v-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
+
+      <md-tab v-if="this.currentPathName === '/android'" md-active md-label="ANDROID" md-icon="build"></md-tab>
+      <md-tab v-else md-label="ANDROID" md-icon="android"></md-tab>
+
+      <md-tab v-if="this.currentPathName === '/design'" md-active md-label="DESIGN" md-icon="photo"></md-tab>
+      <md-tab v-else md-label="DESIGN" md-icon="photo"></md-tab>
+
+      <md-tab v-if="this.currentPathName === '/product'" md-active md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
+      <md-tab v-else md-label="PRODUCT" md-icon="lightbulb_outline"></md-tab>
+
+      <md-tab v-if="mine&&this.currentPathName === '/mine'" md-active  md-label="MINE" md-icon="assignment_ind"></md-tab>
+      <md-tab v-else-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
+      
     </md-tabs>
   </div>
 </template>
@@ -74,7 +89,21 @@ export default {
         } else {
           this.url = "?sort=" + this.api;
         }
+        // let page_num = Cookie.getCookie("history").split("?page =")[1];
+        // page_num = Number(page_num) || this.page_num;
 
+        // let sort = this.url.split('=')[1];
+        //console.log(page_num)
+        // API.getSortedChoosePage(page_num,sort)
+        //   .then(value => {
+        //     this.Items = value.shares;
+        //     //console.log(value.shares)
+        //   })
+        //   .then(() => {
+        //     bus.$emit("getItems", this.Items);
+        //     bus.$emit("mark");
+        //   });
+        //if (page_num === null || page_num === undefined)
         API.getSortedPage(this.url)
           .then(value => {
             this.Items = value.shares;
@@ -87,14 +116,6 @@ export default {
     }
   },
   mounted() {
-    // let url =Cookie.getCookie('history').split('?page =')[0].split('/');
-    // let sort = url[url.length-1];
-    // if(sort!==null&&sort!==undefined){
-    //   let sort1 = '/'+sort;
-    //   let index =  route.indexOf(sort1);
-    //   this.change(index);
-    // }
-
     // 初始化currentPathName
     this.currentPathName = window.location.pathname;
 
