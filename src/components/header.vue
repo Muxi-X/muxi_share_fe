@@ -106,12 +106,6 @@ export default {
       window.location = "/";
     },
     turnBackFromView() {
-      // let location = Cookie.getCookie("history");
-
-      // let url = location.split("?page =")[0];
-      // // console.log('url'+url)
-      // //Cookie.clearCookie('history');
-      // window.location.href = url;
       let url = window.location.href;
 
       let sort = url.split("&"); //

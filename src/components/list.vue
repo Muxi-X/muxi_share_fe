@@ -70,7 +70,7 @@ export default {
   },
   mounted() {
     let page_num = window.location.href.split("=")[1];
-    console.log("list:page=" + page_num);
+
     if (page_num !== null && page_num !== undefined) this.page_num = page_num;
 
     API.choosePage(this.page_num).then(value => {

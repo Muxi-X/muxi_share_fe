@@ -77,7 +77,7 @@ export default {
       let page_num = window.location.href.split("=")[1];
       window.history.pushState(null, null, route[e]);
       this.api = window.location.pathname.split("/")[1];
-      console.log("this.api:" + this.api);
+
       if (this.api == "new") {
         this.url = "";
       } else if (this.api == "mine") {
