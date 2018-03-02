@@ -69,34 +69,34 @@ export default {
     };
   },
   mounted() {
-    // let page_num = Cookie.getCookie("history").split("?page =")[1];
+    let page_num = window.location.href.split("=")[1];
+    console.log("list:page=" + page_num);
+    if (page_num !== null && page_num !== undefined) this.page_num = page_num;
 
-    // if (page_num !== null && page_num !== undefined) this.page_num = page_num;
-    // console.log('outpage_num:'+this.page_num)
     API.choosePage(this.page_num).then(value => {
       this.items = value.shares;
       this.compiledMarkdown();
       this.pages_count = value.pages_count; //总页数数
-      // console.log('mvalue.page:'+value.page)
+
       this.page_num = value.page; //当前页数
     });
   },
   created() {
     bus.$on("getItems", this.fetchData);
+
     bus.$on("mark", this.compiledMarkdown);
-    // bus.$on('turnBackToBefore',this.turnBackChangePage);
   },
   methods: {
     intoView(id) {
-      let history = window.location.href + "?page = " + this.page_num;
-
-      Cookie.setCookie("history", history);
-
-      window.location = "/view/" + id;
+      let url = window.location.href.split("/");
+      url = url[url.length - 1] === "" ? "new" : url[url.length - 1];
+      window.location =
+        "/view/" + id + "/?page =" + this.page_num + "&sort =" + url;
     },
     fetchData(Items) {
       this.items = Items;
     },
+
     pageChange() {
       API.choosePage(this.page_num).then(value => {
         this.items = value.shares;
@@ -128,9 +128,6 @@ export default {
         value.share = marked(value.share || "", { sanitize: true });
       });
     }
-  },
-  beforeDestory() {
-    Cookie.clearCookie("history");
   }
 };
 </script>

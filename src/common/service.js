@@ -28,8 +28,10 @@ function Fetch(url, opt = {}) {
 
 let service = {
   //share
-  getSortedChoosePage(page, sort) {
-    return Fetch("/api/v2.0/?page=" + page + "&sort=" + sort);
+  getSortedChoosePage(page, sort, id = null) {
+    if (id === null) return Fetch("/api/v2.0/?page=" + page + "&sort=" + sort);
+    else
+      return Fetch("/api/v2.0/?page=" + page + "&sort=" + sort + "&id=" + id);
   },
   getSortedPage(url) {
     return Fetch("/api/v2.0/" + url);

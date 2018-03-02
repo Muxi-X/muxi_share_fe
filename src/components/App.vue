@@ -43,12 +43,12 @@ export default {
     foot: footer
   },
   methods: {
-    pagechange() {
-      API.choosePage(this.page_num).then(value => {
-        this.items = value.shares;
-        this.page_num = value.page;
-      });
-    },
+    // pagechange() {
+    //   API.choosePage(this.page_num).then(value => {
+    //     this.items = value.shares;
+    //     this.page_num = value.page;
+    //   });
+    // },
     pageUp() {
       if (this.page_num != this.pages_count) {
         this.page_num += 1;

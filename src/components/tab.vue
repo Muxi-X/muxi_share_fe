@@ -74,51 +74,36 @@ export default {
       if (!this.mounted) {
         return;
       }
-
-      if (
-        route.indexOf(window.location.pathname) > -1 ||
-        window.location.pathname === "/"
-      ) {
-        window.history.pushState(null, null, route[e]);
-        this.api = window.location.pathname.split("/")[1];
-
-        if (this.api == "new") {
-          this.url = "";
-        } else if (this.api == "mine") {
-          this.url = "get_one_all/" + Cookie.getCookie("uid");
-        } else {
-          this.url = "?sort=" + this.api;
-        }
-        // let page_num = Cookie.getCookie("history").split("?page =")[1];
-        // page_num = Number(page_num) || this.page_num;
-
-        // let sort = this.url.split('=')[1];
-        //console.log(page_num)
-        // API.getSortedChoosePage(page_num,sort)
-        //   .then(value => {
-        //     this.Items = value.shares;
-        //     //console.log(value.shares)
-        //   })
-        //   .then(() => {
-        //     bus.$emit("getItems", this.Items);
-        //     bus.$emit("mark");
-        //   });
-        //if (page_num === null || page_num === undefined)
-        API.getSortedPage(this.url)
-          .then(value => {
-            this.Items = value.shares;
-          })
-          .then(() => {
-            bus.$emit("getItems", this.Items);
-            bus.$emit("mark");
-          });
+      let page_num = window.location.href.split("=")[1];
+      window.history.pushState(null, null, route[e]);
+      this.api = window.location.pathname.split("/")[1];
+      console.log("this.api:" + this.api);
+      if (this.api == "new") {
+        this.url = "";
+      } else if (this.api == "mine") {
+        this.url = "get_one_all/" + Cookie.getCookie("uid");
+      } else {
+        this.url = "?sort=" + this.api;
       }
+      let uid = Cookie.getCookie("uid");
+      page_num = Number(page_num) || this.page_num;
+      let sort = this.url.split("=")[1];
+
+      sort = sort || this.api;
+      API.getSortedChoosePage(page_num, sort, uid)
+        .then(value => {
+          this.Items = value.shares;
+        })
+        .then(() => {
+          bus.$emit("getItems", this.Items);
+          bus.$emit("mark");
+        });
     }
   },
   mounted() {
     // 初始化currentPathName
-    this.currentPathName = window.location.pathname;
-
+    this.currentPathName = window.location.pathname.split("/")[1];
+    this.currentPathName = "/" + this.currentPathName;
     let uid = Cookie.getCookie("uid");
     if (uid !== undefined && uid !== null && uid !== "") {
       this.mine = true;

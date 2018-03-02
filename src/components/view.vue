@@ -77,6 +77,7 @@ export default {
   },
   mounted() {
     var api = window.location.pathname;
+
     this.id = api.split("/")[2]; //把 id props 给子组件
     API.getView(this.id).then(value => {
       this.share = value.shares;
@@ -99,9 +100,6 @@ export default {
       });
     }
   }
-  // destroyed() {
-  //   Cookie.clearCookie("history");
-  // }
 };
 </script>
 

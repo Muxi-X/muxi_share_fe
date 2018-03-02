@@ -71,7 +71,9 @@ export default {
   },
   mounted() {
     let pathArray = window.location.pathname.split("/");
-    let index = pathArray.length - 2;
+
+    let index = pathArray.length - 3;
+
     if (pathArray[index] === "view") {
       this.intoView = true;
     }
@@ -104,12 +106,21 @@ export default {
       window.location = "/";
     },
     turnBackFromView() {
-      let location = Cookie.getCookie("history");
+      // let location = Cookie.getCookie("history");
 
-      let url = location.split("?page =")[0];
-      // console.log('url'+url)
-      //Cookie.clearCookie('history');
-      window.location.href = url;
+      // let url = location.split("?page =")[0];
+      // // console.log('url'+url)
+      // //Cookie.clearCookie('history');
+      // window.location.href = url;
+      let url = window.location.href;
+
+      let sort = url.split("&"); //
+      let sortName = sort[sort.length - 1]; //sort = new
+      let sortFina = sortName.split("=")[1]; //new
+
+      let page = sort[0].split("/?page")[1].split("=")[1];
+
+      window.location = "/" + sortFina + "/?page =" + page;
     },
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();
