@@ -13,7 +13,7 @@
               <img v-bind:src="item.avatar" alt="People"> <md-ink-ripple />
             </md-avatar>
             <md-card-header-text>
-              <div class="md-title" style="color:#2296f3" @click="intoView(item.id)"><div>{{item.title}}</div></div>
+              <div class="md-title"  style="color:#2296f3" @click="intoView(item.id)"><div>{{item.title}}</div></div>
               <div class="md-subhead"><div>{{decodeURIComponent(item.username)}}</div></div>
             </md-card-header-text>
             <div class="md-subhead">{{item.date}}</div>
@@ -145,10 +145,10 @@ export default {
   overflow: hidden;
 }
 .index_button {
+  text-overflow: ellipsis;
   color: #2296f3;
-  border: solid 1px #2296f3;
+  border: solid 1px #2296f3 !important;
   border-radius: 10%;
-
   margin: 2vh 0;
   min-height: 2vh !important;
 }
