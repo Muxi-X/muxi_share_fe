@@ -14,7 +14,7 @@
             </md-avatar>
             <md-card-header-text>
               <div class="md-title" style="color:#2296f3" @click="intoView(item.id)"><div>{{item.title}}</div></div>
-              <div class="md-subhead"><div>{{item.username}}</div></div>
+              <div class="md-subhead"><div>{{decodeURIComponent(item.username)}}</div></div>
             </md-card-header-text>
             <div class="md-subhead">{{item.date}}</div>
           </md-card-header>
@@ -40,11 +40,11 @@
       <!-- </div> -->
     </div>
      <!-- <div v-if="!this.page_count">nothing</div> -->
-      <div :class="$style.card_container" class="md-layout">
+      <div :class="$style.page_turn_container" class="md-layout">
         <div :class="$style.page_turn" class="md-layout-item md-size-80">
           <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last </md-button>
           <md-button class="page_turn_num_button  md-mini" :class="$style.page_num_button"  v-show="this.page_num > 0" >{{page_num}}</md-button>
-          <span :class="$style.slash" v-show="this.page_num < this.pages_count">/</span>
+          <span :class="$style.slash" v-show="this.page_num < this.pages_count" >/</span>
           <md-button class=" pages_turn_count_button" :class="$style.page_num_button"  @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
           <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="nextPage" v-show="this.page_num < this.pages_count">Next </md-button>
           </div>
@@ -169,7 +169,7 @@ export default {
     width: 60vw;
   }
   .page_turn {
-    margin-left: 8vw;
+    width: 90%;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 959px) {
@@ -177,7 +177,7 @@ export default {
     width: 70vw;
   }
   .page_turn {
-    margin-left: 6vw;
+    width: 90%;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 767px) {
@@ -185,7 +185,7 @@ export default {
     width: 80vw;
   }
   .page_turn {
-    margin-left: 4vw;
+    width: 90%;
   }
 }
 @media only screen and (max-width: 479px) {
@@ -193,7 +193,7 @@ export default {
     width: 90vw;
   }
   .page_turn {
-    margin-left: 2vw;
+    width: 90%;
   }
 }
 
@@ -234,6 +234,21 @@ export default {
 }
 
 .slash {
-  line-height: 3;
+  line-height: 5;
+}
+@media only screen and (max-width: 767px) {
+  .page_turn_container {
+    width: 90%;
+  }
+  .slash {
+    display: none;
+  }
+  .page_num_button {
+    display: none;
+  }
+  .index_button {
+    width: 40%;
+    margin-left: 5vw;
+  }
 }
 </style>

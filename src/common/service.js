@@ -52,6 +52,7 @@ let service = {
     });
   },
   sendShare(body, token) {
+    console.log("body:" + body);
     return Fetch(`/api/v2.0/send/`, {
       method: "POST",
       data: body,

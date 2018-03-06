@@ -9,7 +9,7 @@
           </md-avatar>
           <md-card-header-text>
             <div class="md-title md-primary" style="color:#2296f3">{{share.title}}</div>
-            <div class="md-subhead">{{share.username}}</div>
+            <div class="md-subhead">{{decodeURIComponent(share.username)}}</div>
           </md-card-header-text>
           <div>{{share.date}}</div>
         </md-card-header>
@@ -112,11 +112,10 @@ export default {
   border-radius: 10%;
 }
 .card_container {
-  width: 840px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 56px;
-  margin-bottom: 56px;
+  margin-top: 5px;
+  margin-bottom: 2%;
 }
 .sharetext {
   margin: 36px;

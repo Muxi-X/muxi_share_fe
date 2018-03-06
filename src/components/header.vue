@@ -78,7 +78,7 @@ export default {
       this.intoView = true;
     }
     if (haveToken()) {
-      this.username = Cookie.getCookie("username");
+      this.username = decodeURIComponent(Cookie.getCookie("username"));
     } else {
       this.username = "登陆";
     }
@@ -94,8 +94,8 @@ export default {
         // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         window.location =
           "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-        // window.location =
-        //   "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+        //   window.location =
+        //     "http://pass.muxixyz.com/?landing=localhost:3000/landing";
       }
     },
     logout() {

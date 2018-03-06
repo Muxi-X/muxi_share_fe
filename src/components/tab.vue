@@ -1,5 +1,5 @@
 <template  >
-  <div  >
+  <div  :class="$style.tab_container">
     <a href="/send" v-if="getToken()">
       <div :class="$style.button_container ">
         <md-button class="md-fab md-fab-bottom-right md-primary">
@@ -119,5 +119,10 @@ export default {
   position: fixed;
   top: 50vh;
   right: 20vw;
+}
+@media only screen and (max-width: 767px) {
+  .tab_container {
+    margin-top: -10vh !important;
+  }
 }
 </style>
