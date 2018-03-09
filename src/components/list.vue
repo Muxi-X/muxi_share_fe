@@ -1,13 +1,13 @@
 <template >
-<div  >
+<div style="background: #eee;">
  <!-- <div class="md-layout-item md-size-80">  -->
   <div :class="$style.list_container" >
     <div v-for = "item in items" :key="item.id">
 
       <div :class="$style.card_container"  >
-     
+
         <md-card md-with-hover class="md-warn">
-           
+
           <md-card-header>
             <md-avatar class="md-large">
               <img v-bind:src="item.avatar" alt="People"> <md-ink-ripple />
@@ -148,7 +148,6 @@ export default {
   text-overflow: ellipsis;
   color: #2296f3;
   border: solid 1px #2296f3 !important;
-  border-radius: 10%;
   margin: 2vh 0;
   min-height: 2vh !important;
 }

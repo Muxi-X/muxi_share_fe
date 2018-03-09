@@ -1,6 +1,6 @@
 <template>
   <div class="phone-viewport">
-    <md-toolbar style="background-color:#2296f3" >
+    <md-toolbar style="background-color:transparent;position:absolute;" >
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
@@ -23,7 +23,7 @@
         <md-divider class="md-inset"></md-divider>
         <md-button @click="logout" >
           <md-list-item >
-            <md-icon class="md-accent">send</md-icon> 
+            <md-icon class="md-accent">send</md-icon>
             <span >login out</span>
           </md-list-item>
         </md-button>
@@ -129,13 +129,12 @@ export default {
 .parallax {
   overflow: hidden;
   width: 100%;
-  height: 37.5vh;
+  height: 43.5vh;
 }
 img {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: 100%;
 }
 .background {
   width: 100%;

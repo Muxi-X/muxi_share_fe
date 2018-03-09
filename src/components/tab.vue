@@ -31,7 +31,7 @@
 
       <md-tab v-if="mine&&this.currentPathName === '/mine'" md-active  md-label="MINE" md-icon="assignment_ind"></md-tab>
       <md-tab v-else-if="mine" md-label="MINE" md-icon="assignment_ind"></md-tab>
-      
+
     </md-tabs>
   </div>
 </template>
@@ -119,6 +119,9 @@ export default {
   position: fixed;
   top: 50vh;
   right: 20vw;
+}
+.tab_container {
+  background: #eee;
 }
 @media only screen and (max-width: 767px) {
   .tab_container {
