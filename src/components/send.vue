@@ -1,7 +1,6 @@
 
 <template>
-  <div>
-    <!-- <he></he> -->
+  <div style=" overflow-y: hidden;max-height:100%;">
     <md-card :class="$style.sendcard">
       <div method="post">
         <md-input-container md-inline :class="$style.title_con">
@@ -10,7 +9,7 @@
       </div>
       <div :class="$style.send_radio">
         <md-radio v-if='id===null||id===undefined' v-model="share.tags" v-for='(choice,index) in choices' :key="index" name="my-test-group1" :md-value="choice">{{choice}}</md-radio>
-         <md-button   :class="$style.send_post" class=""  @click="post">发布分享</md-button>
+        
       </div>
       
        <div :class="$style.editor">
@@ -18,9 +17,9 @@
       <div :class="$style.markdown" v-html="compiledMarkdown"></div> 
     </div>
     </md-card>
-   
-    
-   
+    <div :class="$style.send_bottom_container">
+       <md-button  :class="$style.send_post"  @click="post">Post</md-button>
+    </div>
     <foot></foot>
   </div>
 </template>
@@ -128,12 +127,16 @@ textarea {
 }
 .send_post {
   color: #2296f3;
-  border: solid 1px #2296f3;
-  border-radius: 10%;
-  margin-left: 10%;
+  border: solid 1px #2296f3 !important;
   font-weight: 900;
 }
 code {
   color: #f66;
+}
+.send_bottom_container {
+  margin-top: -3%;
+  margin-bottom: 2%;
+  text-align: center;
+  transform: translateX(-1%);
 }
 </style>

@@ -108,13 +108,38 @@ export default {
 .btn {
   float: right;
   color: #2296f3;
-  border: solid 1px #2296f3;
+  border: solid 1px #2296f3 !important;
   border-radius: 10%;
+}
+@media screen and (min-width: 1200px) {
+  .card_container {
+    width: 50vw;
+  }
+}
+@media screen and (min-width: 960px) and (max-width: 1199px) {
+  .card_container {
+    width: 60vw;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 959px) {
+  .card_container {
+    width: 70vw;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .card_container {
+    width: 80vw;
+  }
+}
+@media only screen and (max-width: 479px) {
+  .card_container {
+    width: 90vw;
+  }
 }
 .card_container {
   margin-left: auto;
   margin-right: auto;
-  margin-top: 5px;
+  margin-top: 15px;
   margin-bottom: 2%;
 }
 .sharetext {

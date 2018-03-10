@@ -14,7 +14,7 @@ export default {
       shareContent: {
         title: "",
         tags: "",
-        share: "# hello"
+        share: ""
       },
       sendApi: API.sendShare
     };

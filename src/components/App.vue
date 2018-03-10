@@ -3,20 +3,7 @@
     <he></he>
     <tab></tab>
     <list></list>
-    <!-- <div :class="$style.fab">
-      <div :class="$style.back_container" v-on:click="pageDown" v-show="this.page_num > 1">
-        <md-button class="md-fab">
-          <md-icon>arrow_back</md-icon>
-        </md-button>
-      </div>
-      <div :class="$style.forward_container" v-on:click="pageUp"  v-show="this.page_num < this.pages_count" >
-        
-      
-        <md-button class="md-fab">
-          <md-icon>arrow_forward</md-icon>
-        </md-button>
-      </div>
-    </div> -->
+   
     <foot></foot>
   </div>
 </template>
@@ -41,26 +28,6 @@ export default {
     tab: tab,
     list: list,
     foot: footer
-  },
-  methods: {
-    // pagechange() {
-    //   API.choosePage(this.page_num).then(value => {
-    //     this.items = value.shares;
-    //     this.page_num = value.page;
-    //   });
-    // },
-    pageUp() {
-      if (this.page_num != this.pages_count) {
-        this.page_num += 1;
-        this.pagechange();
-      }
-    },
-    pageDown() {
-      if (this.page_num != 1) {
-        this.page_num -= 1;
-        this.pagechange();
-      }
-    }
   }
 };
 </script>
@@ -69,6 +36,7 @@ export default {
 <style lang="scss" module>
 html,
 body {
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   margin: 0;

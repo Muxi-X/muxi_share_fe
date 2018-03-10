@@ -4,9 +4,9 @@
       <md-button class="md-icon-button" @click="toggleLeftSidenav">
         <md-icon>menu</md-icon>
       </md-button>
-      <h2 class="md-title" style="flex: 1">木犀分享</h2>
-      <md-button @click="turnBackFromView"  v-if="intoView">返回</md-button>
-      <md-button   @click="login"  >{{username}}</md-button>
+      <h2 class="md-title" style="flex:1">木犀分享</h2>
+      <md-button @click="turnBackFromView"  v-if="intoView" :class="$style.top_button_l">返回</md-button>
+      <md-button   @click="login" :class="$style.top_button_r" >{{username}}</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav">
       <md-toolbar class="md-medium">
@@ -80,7 +80,7 @@ export default {
     if (haveToken()) {
       this.username = decodeURIComponent(Cookie.getCookie("username"));
     } else {
-      this.username = "登陆";
+      this.username = "登录";
     }
     let randomNum = parseInt(Math.random() * this.srcs.length);
     this.picture = this.srcs[randomNum];
@@ -94,8 +94,8 @@ export default {
         // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         window.location =
           "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-        //   window.location =
-        //     "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+        // window.location =
+        //   "http://pass.muxixyz.com/?landing=localhost:3000/landing";
       }
     },
     logout() {
@@ -138,6 +138,24 @@ img {
 }
 .background {
   width: 100%;
-  height: 100%;
+  max-height: 100%;
+}
+.top_button_r {
+  position: absolute;
+  left: 90vw;
+}
+.top_button_l {
+  position: absolute;
+  left: 80vw;
+}
+@media only screen and (max-width: 767px) {
+  .top_button_r {
+    position: absolute;
+    left: 80vw;
+  }
+  .top_button_l {
+    position: absolute;
+    left: 70vw;
+  }
 }
 </style>

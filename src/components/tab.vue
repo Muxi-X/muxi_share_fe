@@ -125,7 +125,7 @@ export default {
 }
 @media only screen and (max-width: 767px) {
   .tab_container {
-    margin-top: -10vh !important;
+    margin-top: -12vh !important;
   }
 }
 </style>
