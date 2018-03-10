@@ -59,7 +59,6 @@ export default {
   float: right;
   margin-right: 48px;
   color: #2296f3;
-  border: solid 1px #2296f3;
-  border-radius: 10%;
+  border: solid 1px #2296f3 !important;
 }
 </style>

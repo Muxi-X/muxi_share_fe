@@ -141,21 +141,21 @@ img {
   max-height: 100%;
 }
 .top_button_r {
-  position: absolute;
+  position: absolute !important;
   left: 90vw;
 }
 .top_button_l {
-  position: absolute;
+  position: absolute !important;
   left: 80vw;
 }
 @media only screen and (max-width: 767px) {
   .top_button_r {
-    position: absolute;
-    left: 80vw;
+    position: absolute !important;
+    left: 75vw;
   }
   .top_button_l {
-    position: absolute;
-    left: 70vw;
+    position: absolute !important;
+    left: 65vw;
   }
 }
 </style>

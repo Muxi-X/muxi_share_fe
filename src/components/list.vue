@@ -233,21 +233,21 @@ export default {
 }
 
 .slash {
-  line-height: 5;
+  line-height: 5 !important;
 }
 @media only screen and (max-width: 767px) {
   .page_turn_container {
-    width: 90%;
+    width: 90% !important;
   }
   .slash {
-    display: none;
+    display: none !important;
   }
   .page_num_button {
-    display: none;
+    display: none !important;
   }
   .index_button {
-    width: 40%;
-    margin-left: 5vw;
+    width: 40% !important;
+    margin-left: 5vw !important;
   }
 }
 </style>
