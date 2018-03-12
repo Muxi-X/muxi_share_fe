@@ -233,7 +233,8 @@ export default {
 }
 
 .slash {
-  line-height: 5 !important;
+  position: relative;
+  top: 2.5vh;
 }
 @media only screen and (max-width: 767px) {
   .page_turn_container {

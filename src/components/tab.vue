@@ -68,6 +68,8 @@ export default {
 
   methods: {
     getToken() {
+      let token = Cookie.getCookie("token");
+      API.isTokenEffective(token);
       return haveToken();
     },
     change(e) {

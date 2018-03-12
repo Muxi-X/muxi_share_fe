@@ -19,6 +19,11 @@ function Fetch(url, opt = {}) {
           util.message(response.statusText, "err");
         case 403:
           alert("无权限");
+        case 401:
+          if (url === "/api/v2.0/token/") {
+            window.location.href =
+              "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+          }
           throw response.statusText;
           break;
       }
@@ -81,6 +86,11 @@ let service = {
     return Fetch("/api/v2.0/" + id + "/add_comment/", {
       method: "post",
       data: body,
+      token: token
+    });
+  },
+  isTokenEffective(token) {
+    return Fetch("/api/v2.0/token/", {
       token: token
     });
   }
