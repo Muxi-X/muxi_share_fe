@@ -95,7 +95,7 @@ export default {
         window.location =
           "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
         // window.location =
-        // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+        //"http://pass.muxixyz.com/?landing=localhost:3000/landing";
       }
     },
     logout() {

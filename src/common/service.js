@@ -23,6 +23,7 @@ function Fetch(url, opt = {}) {
           if (url === "/api/v2.0/token/") {
             window.location.href =
               "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+            // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
           }
           throw response.statusText;
           break;

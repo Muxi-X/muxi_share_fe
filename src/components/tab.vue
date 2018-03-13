@@ -69,7 +69,8 @@ export default {
   methods: {
     getToken() {
       let token = Cookie.getCookie("token");
-      API.isTokenEffective(token);
+      if (token !== "" && token !== undefined && token !== null)
+        API.isTokenEffective(token);
       return haveToken();
     },
     change(e) {
