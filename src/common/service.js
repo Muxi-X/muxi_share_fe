@@ -24,6 +24,10 @@ function Fetch(url, opt = {}) {
             window.location.href =
               "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
             // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          } else {
+            alert("密码不正确");
+            window.location.href =
+              "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
           }
           throw response.statusText;
           break;
@@ -58,7 +62,6 @@ let service = {
     });
   },
   sendShare(body, token) {
-    console.log("body:" + body);
     return Fetch(`/api/v2.0/send/`, {
       method: "POST",
       data: body,
