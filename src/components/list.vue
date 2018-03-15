@@ -16,8 +16,9 @@
               <div class="md-title"  style="color:#2296f3" @click="intoView(item.id)"><div>{{item.title}}</div></div>
               <div class="md-subhead"><div>{{decodeURIComponent(item.username)}}</div></div>
             </md-card-header-text>
-            <div class="md-subhead">{{item.date}}</div>
+            
           </md-card-header>
+          <p style="position:absolute;right:10vw;top:7vh;width:fit-content;">{{patt(item.date)}}</p>
           <div :class="$style.content_container">
             <md-card-content v-html="item.share" :class="$style.share_content">
             </md-card-content>
@@ -59,6 +60,7 @@ import { bus } from "../bus.js";
 import marked from "../common/marked";
 import API from "../common/service";
 import Cookie from "../common/cookie";
+import pattern from "../common/dateFormatter";
 
 export default {
   data() {
@@ -87,6 +89,9 @@ export default {
     bus.$on("mark", this.compiledMarkdown);
   },
   methods: {
+    patt(arg) {
+      return pattern(arg);
+    },
     intoView(id) {
       let url = window.location.href.split("/");
       url = url[url.length - 1] === "" ? "new" : url[url.length - 1];
@@ -137,6 +142,9 @@ export default {
 /*不要写死 子组件撑开 */
 .share_content > p > a {
   color: red !important;
+}
+.share_content {
+  text-overflow: ellipsis;
 }
 .list_container {
   height: 100%;

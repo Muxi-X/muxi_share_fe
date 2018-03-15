@@ -17,19 +17,17 @@ function Fetch(url, opt = {}) {
           return json;
         case 502:
           util.message(response.statusText, "err");
+
         case 403:
           alert("无权限");
+          throw response.statusText;
         case 401:
           if (url === "/api/v2.0/token/") {
             window.location.href =
               "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
             // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
-          } else {
-            alert("密码不正确");
-            window.location.href =
-              "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
           }
-          throw response.statusText;
+          // throw response.statusText;
           break;
       }
     });
