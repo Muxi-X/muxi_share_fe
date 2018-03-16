@@ -16,9 +16,9 @@
 
 
 <script>
-import haveToken from "../common/haveToken";
-import Cookie from "../common/cookie";
-import API from "../common/service";
+import haveToken from "haveToken";
+import Cookie from "cookie";
+import API from "api";
 export default {
   data() {
     return {

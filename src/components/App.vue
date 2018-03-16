@@ -14,7 +14,7 @@ import header from "./header.vue";
 import tab from "./tab.vue";
 import list from "./list.vue";
 import footer from "./footer.vue";
-import API from "../common/service";
+import API from "api";
 export default {
   data() {
     return {

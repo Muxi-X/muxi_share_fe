@@ -5,8 +5,8 @@
 </template>
 
 <script>
-import Cookie from "../common/cookie.js";
-import API from "../common/service";
+import Cookie from "cookie";
+import API from "api";
 export default {
   data() {
     return {

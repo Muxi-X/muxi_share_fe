@@ -38,8 +38,8 @@
 
 <script>
 import { bus } from "../bus.js";
-import Cookie from "../common/cookie.js";
-import haveToken from "../common/haveToken";
+import Cookie from "cookie";
+import haveToken from "haveToken";
 
 export default {
   data() {
@@ -94,9 +94,9 @@ export default {
       } else {
         // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         window.location =
-          "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-        // window.location =
-        // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          // "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+          // window.location =
+          "http://pass.muxixyz.com/?landing=localhost:3000/landing";
       }
     },
     logout() {
@@ -156,7 +156,7 @@ img {
   }
   .top_button_l {
     position: absolute !important;
-    left: 60vw;
+    left: 55vw;
   }
 }
 </style>

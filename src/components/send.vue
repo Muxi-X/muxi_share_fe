@@ -28,8 +28,8 @@
  <script>
 import header from "./header.vue";
 import footer from "./footer.vue";
-import Cookie from "../common/cookie.js";
-import marked from "../common/marked";
+import Cookie from "cookie";
+import marked from "mark";
 
 var _ = require("lodash");
 

@@ -11,8 +11,8 @@
             <div class="md-title md-primary" style="color:#2296f3">{{share.title}}</div>
             <div class="md-subhead">{{decodeURIComponent(share.username)}}</div>
           </md-card-header-text>
-          <div>{{share.date}}</div>
         </md-card-header>
+          <p :class="$style.view_share_time">{{ pattime(share.date)}}</p>
         <md-divider class="md-inset"></md-divider>
         <div :class="$style.sharetext">
           <md-card-content  v-html="compiledMarkdown">{{share.share}}</md-card-content>
@@ -34,10 +34,12 @@
             </md-avatar>
             <md-card-header-text>
               <div >{{item.username}}</div>
-              <div class="md-subhead">{{item.date}}</div>
             </md-card-header-text>
           </md-card-header>
+
+         <p :class="$style.view_share_time">{{ pattime(item.date)}}</p>
           <md-card-content>{{item.comment}}</md-card-content>
+
           <md-divider></md-divider>
         </div>
         <show :id="this.id" v-on:newComment="fetchComments"></show>
@@ -50,9 +52,10 @@
 import header from "./header.vue";
 import footer from "./footer.vue";
 import show from "./show.vue";
-import Cookie from "../common/cookie";
-import marked from "../common/marked";
-import API from "../common/service";
+import Cookie from "cookie";
+import marked from "mark";
+import API from "api";
+import pattern from "dateFormatter";
 
 export default {
   data() {
@@ -88,6 +91,10 @@ export default {
     });
   },
   methods: {
+    pattime(arg) {
+      if (arg == null || arg == undefined) return;
+      return pattern(arg);
+    },
     fetchComments() {
       API.getView(this.id).then(res => {
         this.items = res.comments;
@@ -105,6 +112,12 @@ export default {
 
 
 <style lang="scss" module>
+.view_share_time {
+  position: absolute;
+  right: 10vw;
+  top: 7vh;
+  width: fit-content;
+}
 .btn {
   float: right;
   color: #2296f3;
@@ -148,5 +161,14 @@ export default {
 .comment_title {
   margin: 36px 16px;
   font-size: 24px;
+}
+@media only screen and (max-width: 767px) {
+  .view_share_time {
+    font-size: 10px;
+    position: absolute;
+    right: 14vw;
+    top: 7vh;
+    width: fit-content;
+  }
 }
 </style>

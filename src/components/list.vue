@@ -18,7 +18,7 @@
             </md-card-header-text>
             
           </md-card-header>
-          <p style="position:absolute;right:10vw;top:7vh;width:fit-content;">{{patt(item.date)}}</p>
+          <p :class="$style.share_time" >{{patt(item.date)}}</p>
           <div :class="$style.content_container">
             <md-card-content v-html="item.share" :class="$style.share_content">
             </md-card-content>
@@ -57,10 +57,10 @@
 
 <script>
 import { bus } from "../bus.js";
-import marked from "../common/marked";
-import API from "../common/service";
-import Cookie from "../common/cookie";
-import pattern from "../common/dateFormatter";
+import marked from "mark";
+import API from "api";
+import Cookie from "cookie";
+import pattern from "dateFormatter";
 
 export default {
   data() {
@@ -143,7 +143,10 @@ export default {
 .share_content > p > a {
   color: red !important;
 }
-.share_content {
+.share_content p {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 .list_container {
@@ -162,6 +165,12 @@ export default {
 .page_num_button {
   margin: 2vh 2vw;
   min-height: 2vh !important;
+}
+.share_time {
+  position: absolute;
+  right: 10vw;
+  top: 7vh;
+  width: fit-content;
 }
 @media screen and (min-width: 1200px) {
   .list_container {
@@ -241,8 +250,8 @@ export default {
 }
 
 .slash {
-  position: relative;
-  top: 2.5vh;
+  position: relative !important;
+  top: 1.5vh;
 }
 @media only screen and (max-width: 767px) {
   .page_turn_container {
@@ -257,6 +266,13 @@ export default {
   .index_button {
     width: 40% !important;
     margin-left: 5vw !important;
+  }
+  .share_time {
+    font-size: 10px;
+    position: absolute;
+    right: 12vw;
+    top: 7vh;
+    width: fit-content;
   }
 }
 </style>

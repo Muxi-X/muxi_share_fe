@@ -40,9 +40,9 @@
 
 <script>
 import { bus } from "../bus.js";
-import Cookie from "../common/cookie.js";
-import API from "../common/service";
-import haveToken from "../common/haveToken";
+import Cookie from "cookie";
+import API from "api";
+import haveToken from "haveToken";
 var route = [
   "/new",
   "/hot",
