@@ -28,11 +28,13 @@ module.exports = {
         ? config.build.assetsPublicPath
         : config.dev.assetsPublicPath
   },
+
   resolve: {
     //... 其他配置
     modules: [path.resolve(__dirname, "../node_modules")], // node_modules文件夹所在的位置取决于跟webpack.base.conf.js相对的路径
     alias: {
       //... 其他配置
+      //
       api: path.resolve(__dirname, "../src/common/service.js"), // api文件所在的位置取决于跟webpack.base.conf.js相对的路径，在项目中会自动转换跟项目文件的相对路径
       dateFormatter: path.resolve(__dirname, "../src/common/dateFormatter.js"),
       cookie: path.resolve(__dirname, "../src/common/cookie.js"),
@@ -41,6 +43,8 @@ module.exports = {
     }
   },
   module: {
+    noParse: /lodash/,
+
     rules: [
       {
         test: /\.vue$/,
@@ -58,7 +62,7 @@ module.exports = {
 
       {
         test: /\.css$/,
-        loaders: "style-loader!css-loader"
+        loaders: "style-loader!css-loader?minimize"
       },
       {
         test: /\.scss$/,
@@ -91,8 +95,7 @@ module.exports = {
     }),
     new webpack.optimize.CommonsChunkPlugin({
       async: "shared-module",
-      minChunks: (module, count) =>
-        count >= 2 // 当一个模块被重复引用2次或以上的时候单独打包起来。
+      minChunks: (module, count) => count >= 2 // 当一个模块被重复引用2次或以上的时候单独打包起来。
     }),
     // extract webpack runtime and module manifest to its own file in order to
     // prevent vendor hash from being updated whenever app bundle is updated
