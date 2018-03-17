@@ -3,7 +3,7 @@ export default function(fmt) {
   let date = fmt.split("GMT")[0];
 
   let DateArray = date.split(" ");
-  console.log("date:" + DateArray[1]);
+
   switch (DateArray[0]) {
     case "Mon,":
       DateArray[0] = "星期一";

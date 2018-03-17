@@ -5,7 +5,7 @@
         <md-icon>menu</md-icon>
       </md-button>
       <h2 class="md-title" style="flex:1">木犀分享</h2>
-      <md-button @click="turnBackFromView"  v-if="intoView" :class="$style.top_button_l">返回</md-button>
+      <md-button @click="turnBackFromView"  v-if="intoView" :class="$style.top_button_l">首页</md-button>
       <md-button   @click="login" :class="$style.top_button_r" >{{username}}</md-button>
     </md-toolbar>
     <md-sidenav class="md-left" ref="leftSidenav">
@@ -94,9 +94,9 @@ export default {
       } else {
         // window.location = "http://120.77.246.73:4000?landing=localhost:3000/landing"
         window.location =
-          // "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-          // window.location =
-          "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+        // window.location =
+        // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
       }
     },
     logout() {
@@ -108,15 +108,7 @@ export default {
       window.location = "/";
     },
     turnBackFromView() {
-      let url = window.location.href;
-
-      let sort = url.split("&"); //
-      let sortName = sort[sort.length - 1]; //sort = new
-      let sortFina = sortName.split("=")[1]; //new
-
-      let page = sort[0].split("/?page")[1].split("=")[1];
-
-      window.location = "/" + sortFina + "/?page =" + page;
+      window.location = "/";
     },
     toggleLeftSidenav() {
       this.$refs.leftSidenav.toggle();

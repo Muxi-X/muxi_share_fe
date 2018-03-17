@@ -1,6 +1,6 @@
 <template >
 <div style="background: #eee;">
- <!-- <div class="md-layout-item md-size-80">  -->
+ 
   <div :class="$style.list_container" >
     <div v-for = "item in items" :key="item.id">
 
@@ -38,9 +38,9 @@
           </div>
         </md-card>
       </div>
-      <!-- </div> -->
+     
     </div>
-     <!-- <div v-if="!this.page_count">nothing</div> -->
+     
       <div :class="$style.page_turn_container" class="md-layout">
         <div :class="$style.page_turn" class="md-layout-item md-size-80">
           <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last </md-button>
@@ -95,6 +95,7 @@ export default {
     intoView(id) {
       let url = window.location.href.split("/");
       url = url[url.length - 1] === "" ? "new" : url[url.length - 1];
+
       window.location =
         "/view/" + id + "/?page =" + this.page_num + "&sort =" + url;
     },
@@ -103,6 +104,7 @@ export default {
     },
 
     pageChange() {
+      window.scrollTo(0, 0);
       API.choosePage(this.page_num).then(value => {
         this.items = value.shares;
         this.compiledMarkdown();
@@ -113,15 +115,28 @@ export default {
 
     lastPage() {
       if (this.page_num !== 1) {
+        let sort = window.location.pathname.split("/")[1] || "new";
         this.page_num--;
+        window.history.pushState(
+          null,
+          null,
+          "/" + sort + "/?page=" + this.page_num
+        );
+
         this.pageChange();
       }
     },
     nextPage() {
       if (this.page_num !== this.pages_count) {
+        let sort = window.location.pathname.split("/")[1] || "new";
         this.page_num++;
+
         this.pageChange();
-        window.scrollTo(0, 0);
+        window.history.pushState(
+          null,
+          null,
+          "/" + sort + "/?page=" + this.page_num
+        );
       }
     },
     finalPage() {

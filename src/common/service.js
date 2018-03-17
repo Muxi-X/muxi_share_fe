@@ -1,3 +1,5 @@
+import Cookie from "cookie";
+
 function Fetch(url, opt = {}) {
   opt.method = opt.method || "GET";
   opt.headers = {
@@ -20,14 +22,9 @@ function Fetch(url, opt = {}) {
 
         case 403:
           alert("无权限");
-          throw response.statusText;
+
         case 401:
-          if (url === "/api/v2.0/token/") {
-            window.location.href =
-              "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-            // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
-          }
-          // throw response.statusText;
+          throw response.statusText;
           break;
       }
     });

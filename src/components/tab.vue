@@ -1,6 +1,6 @@
 <template  >
   <div  :class="$style.tab_container">
-    <a href="/send" v-if="getToken()">
+    <a v-if="getToken()" @click="ifToken()">
       <div :class="$style.button_container ">
         <md-button class="md-fab md-fab-bottom-right md-primary">
           <md-icon >add</md-icon>
@@ -67,20 +67,32 @@ export default {
   },
 
   methods: {
-    getToken() {
+    ifToken() {
       let token = Cookie.getCookie("token");
-      if (token !== "" && token !== undefined && token !== null)
-        API.isTokenEffective(token);
+
+      API.isTokenEffective(token).catch(error => {
+        Cookie.clearCookie("token");
+        Cookie.clearCookie("Mt");
+        Cookie.clearCookie("uid");
+        Cookie.clearCookie("username");
+        window.location.href =
+          "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+        //"http://pass.muxixyz.com/?landing=localhost:3000/landing";
+      });
+      window.location = "/send";
+    },
+    getToken() {
       return haveToken();
     },
     change(e) {
       if (!this.mounted) {
         return;
       }
-      let page_num = window.location.href.split("=")[1];
-      window.history.pushState(null, null, route[e]);
-      this.api = window.location.pathname.split("/")[1];
 
+      let page_num = window.location.href.split("=")[1] || this.page_num;
+      window.history.pushState(null, null, route[e] + "/?page=" + page_num);
+      this.api = window.location.pathname.split("/")[1];
+      let url = this.api || "new";
       if (this.api == "new") {
         this.url = "";
       } else if (this.api == "mine") {
@@ -90,8 +102,7 @@ export default {
       }
       let uid = Cookie.getCookie("uid");
       page_num = Number(page_num) || this.page_num;
-      let sort = this.url.split("=")[1];
-
+      let sort = window.location.href.split("/")[1] || "new";
       sort = sort || this.api;
       API.getSortedChoosePage(page_num, sort, uid)
         .then(value => {
@@ -107,6 +118,7 @@ export default {
     // 初始化currentPathName
     this.currentPathName = window.location.pathname.split("/")[1];
     this.currentPathName = "/" + this.currentPathName;
+
     let uid = Cookie.getCookie("uid");
     if (uid !== undefined && uid !== null && uid !== "") {
       this.mine = true;
