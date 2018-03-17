@@ -104,13 +104,14 @@ export default {
     },
 
     pageChange() {
-      window.scrollTo(0, 0);
       API.choosePage(this.page_num).then(value => {
         this.items = value.shares;
         this.compiledMarkdown();
         this.pages_count = value.pages_count; //总页数数
         this.page_num = value.page; //当前页数
       });
+
+      window.scrollTo(0, 0);
     },
 
     lastPage() {
