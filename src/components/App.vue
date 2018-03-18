@@ -15,6 +15,7 @@ import tab from "./tab.vue";
 import list from "./list.vue";
 import footer from "./footer.vue";
 import API from "api";
+import Cookie from "cookie";
 export default {
   data() {
     return {
@@ -29,6 +30,10 @@ export default {
     list: list,
     foot: footer
   }
+  // mounted(){
+  //   let passToken = Cookie.getCookie("passToken");
+
+  // }
 };
 </script>
 

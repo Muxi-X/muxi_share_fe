@@ -33,21 +33,20 @@ export default {
       username: this.username,
       password: btoa("muxistudio@ccnu")
     };
+    let bodyup = {
+      username: this.username,
+      password: "muxistudio@ccnu"
+    };
 
     API.login(bodyin)
       .then(res => {
-        if (res !== null && res !== undefined) {
-          return res;
-        } else {
-          let bodyup = {
-            username: this.username,
-            password: "muxistudio@ccnu"
-          };
-          API.signup(bodyup).then(value => {
-            API.login(bodyin);
-          });
-        }
+        return res;
       })
+      .catch(
+        API.signup(bodyup).then(value => {
+          API.login(bodyin);
+        })
+      )
       .then(value => {
         Cookie.setCookie("token", value.token);
         Cookie.setCookie("uid", value.user_id);
