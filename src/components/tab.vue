@@ -102,7 +102,9 @@ export default {
       }
       let uid = Cookie.getCookie("uid");
       page_num = Number(page_num) || this.page_num;
-      let sort = window.location.href.split("/")[1] || "new";
+
+      let sort = window.location.pathname.split("/")[1] || "new";
+
       sort = sort || this.api;
       API.getSortedChoosePage(page_num, sort, uid)
         .then(value => {
