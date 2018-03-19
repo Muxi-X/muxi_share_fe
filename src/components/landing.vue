@@ -39,19 +39,21 @@ export default {
     };
 
     API.login(bodyin)
-      .then(res => {
-        return res;
-      })
-      .catch(
-        API.signup(bodyup).then(value => {
-          API.login(bodyin);
-        })
-      )
       .then(value => {
         Cookie.setCookie("token", value.token);
         Cookie.setCookie("uid", value.user_id);
         // Cookie.setCookie('avatar',value.avatar)
+      })
+      .catch(err => {
+        API.signup(bodyup).then(value => {
+          API.login(bodyin).then(value => {
+            Cookie.setCookie("token", value.token);
+            Cookie.setCookie("uid", value.user_id);
+            // Cookie.setCookie('avatar',value.avatar)
+          });
+        });
       });
+
     this.url = Cookie.getCookie("url");
     this.url = "/";
     setTimeout(() => {
