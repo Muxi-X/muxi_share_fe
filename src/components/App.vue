@@ -41,7 +41,6 @@ export default {
 <style lang="scss" module>
 html,
 body {
-  overflow-x: hidden !important;
   width: 100%;
   height: 100%;
   margin: 0;

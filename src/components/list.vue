@@ -43,7 +43,7 @@
      
       <div :class="$style.page_turn_container" class="md-layout">
         <div :class="$style.page_turn" class="md-layout-item md-size-80">
-          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0" >Last </md-button>
+          <md-button class="md-raised  page_turn_button" :class="$style.index_button"  @click="lastPage" v-show="this.page_num > 0">Last </md-button>
           <md-button class="page_turn_num_button  md-mini" :class="$style.page_num_button"  v-show="this.page_num > 0" >{{page_num}}</md-button>
           <span :class="$style.slash" v-show="this.page_num < this.pages_count" >/</span>
           <md-button class=" pages_turn_count_button" :class="$style.page_num_button"  @click="finalPage" v-show="this.page_num < this.pages_count">{{ pages_count}}</md-button>
@@ -104,14 +104,19 @@ export default {
     },
 
     pageChange() {
-      API.choosePage(this.page_num).then(value => {
-        this.items = value.shares;
-        this.compiledMarkdown();
-        this.pages_count = value.pages_count; //总页数数
-        this.page_num = value.page; //当前页数
-      });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      let uid = Cookie.getCookie("uid");
+      let sort = window.location.pathname.split("/")[1] || "new";
 
-      window.scrollTo(0, 0);
+      API.getSortedChoosePage(this.page_num, sort, uid)
+        //API.choosePage(this.page_num)
+        .then(value => {
+          this.items = value.shares;
+          this.compiledMarkdown();
+          this.pages_count = value.pages_count; //总页数数
+          this.page_num = value.page; //当前页数
+        });
     },
 
     lastPage() {
