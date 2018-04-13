@@ -76,8 +76,8 @@ export default {
         Cookie.clearCookie("uid");
         Cookie.clearCookie("username");
         window.location.href =
-          "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
-        // "http://pass.muxixyz.com/?landing=localhost:3000/landing";
+          // "http://pass.muxixyz.com/?landing=share.muxixyz.com/landing";
+          "http://pass.muxixyz.com/?landing=localhost:3000/landing";
       });
       window.location = "/send";
     },

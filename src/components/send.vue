@@ -68,8 +68,9 @@ export default {
         alert("请将信息填完整");
       } else {
         let token = Cookie.getCookie("token");
-        this.fetchFun(this.share, token, this.id);
-        this.changeWeb();
+        this.fetchFun(this.share, token, this.id).then(() => {
+          this.changeWeb();
+        });
       }
     },
     changeWeb: function() {
